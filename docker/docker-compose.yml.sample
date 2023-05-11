@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  my-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3334:80"
+    volumes:
+      - ../src:/var/www/html
+    environment:
+      - SSL_MODE=off
+      - APP_URL=http://localhost:3334
+    networks:
+      - front
+      - back
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge
