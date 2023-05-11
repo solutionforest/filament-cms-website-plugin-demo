@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a072fe357042caee50a63db303427341",
+    "content-hash": "9abf7556f8540bc8d22b281d53541fda",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -4599,11 +4599,12 @@
         },
         {
             "name": "solution-forest/filament-cms-website-plugin",
-            "version": "dev-main",
+            "version": "1.0.0",
             "dist": {
-                "type": "path",
-                "url": "./packages/filament-cms-website-plugin",
-                "reference": "2613827793b7923a29c69d2facabedd0fe8dfdf9"
+                "type": "zip",
+                "url": "https://filament-cms-website-plugin.composer.sh/download/99218ba1-608b-4ede-8e4a-ff5f3b631bef/filament-cms-website-plugin-1.0.0.zip",
+                "reference": "ec2e4ca48062e20b7ab1c71b6245c3086077bfac",
+                "shasum": "f2df6463c194d63e212fa5eb079ae10f77db3588"
             },
             "require": {
                 "bensampo/laravel-enum": "^6.3",
@@ -4633,23 +4634,23 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "SolutionForest\\FilamentCms\\FilamentCmsWebsiteProvider"
-                    ],
                     "aliases": {
                         "FilamentCms": "SolutionForest\\FilamentCms\\Facades\\FilamentCms"
-                    }
+                    },
+                    "providers": [
+                        "SolutionForest\\FilamentCms\\FilamentCmsWebsiteProvider"
+                    ]
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "SolutionForest\\FilamentCms\\": "src",
-                    "SolutionForest\\FilamentCms\\Database\\Factories\\": "database/factories",
-                    "SolutionForest\\FilamentCms\\Database\\Seeders\\": "database/seeders"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "SolutionForest\\FilamentCms\\": "src",
+                    "SolutionForest\\FilamentCms\\Database\\Seeders\\": "database/seeders",
+                    "SolutionForest\\FilamentCms\\Database\\Factories\\": "database/factories"
+                }
             },
             "license": [
                 "MIT"
@@ -4657,8 +4658,8 @@
             "authors": [
                 {
                     "name": "Carly",
-                    "email": "info@solutionforest.net",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "info@solutionforest.net"
                 }
             ],
             "description": "This is a filament cms plugin for Filament Admin",
@@ -4673,10 +4674,7 @@
                 "issues": "https://github.com/solution-forest/filament-cms-website-plugin/issues",
                 "source": "https://github.com/solution-forest/filament-cms-website-plugin"
             },
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2023-05-10T05:13:36+00:00"
         },
         {
             "name": "solution-forest/filament-tree",
@@ -9895,7 +9893,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,

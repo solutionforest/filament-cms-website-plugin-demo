@@ -11,7 +11,7 @@
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "solution-forest/filament-cms-website-plugin": "dev-main"
+        "solution-forest/filament-cms-website-plugin": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -68,6 +68,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
