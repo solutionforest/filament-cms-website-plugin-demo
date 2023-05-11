@@ -7,7 +7,8 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-ENV ROOT=/var/www/html
-WORKDIR $ROOT
+COPY src /var/www/html
 
-COPY src .
+RUN rm -rf /var/www/html/storage/logs/*.log
+
+RUN chown -R webuser:webgroup /var/www/html/
