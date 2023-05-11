@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Storage;
 
 class Kernel extends ConsoleKernel
 {
@@ -12,7 +13,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Schedule the database.sqlite.example file to be copied to database.sqlite every hour
+        $schedule->call(function () {
+            if (Storage::disk('database')->exists('database.sqlite.example')) {
+                // Copy and override the database.sqlite.example file to database.sqlite
+                Storage::disk('database')->copy('database.sqlite.example', 'database.sqlite');
+            }
+        })->hourly();
     }
 
     /**
@@ -20,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
