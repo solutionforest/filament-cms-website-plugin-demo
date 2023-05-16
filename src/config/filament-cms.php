@@ -23,8 +23,7 @@ return [
     |
     */
     'middleware' => [
-        'web' => [
-        ],
+        'web' => [],
     ],
 
     'filament' => [

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class Kernel extends ConsoleKernel
@@ -20,6 +21,7 @@ class Kernel extends ConsoleKernel
                 Storage::disk('database')->copy('database.sqlite.example', 'database.sqlite');
             }
         })->hourly();
+        $schedule->call(fn () => Log::info('This is a scheduled task'))->everyMinute();
     }
 
     /**
