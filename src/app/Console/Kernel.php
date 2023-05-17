@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
                 Storage::disk('database')->copy('database.sqlite.example', 'database.sqlite');
             }
         })->hourly();
-        $schedule->call(fn () => Log::info('This is a scheduled task'))->everyMinute();
+        // $schedule->call(fn () => Log::info('This is a scheduled task'))->everyMinute();
     }
 
     /**

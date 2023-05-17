@@ -21,6 +21,9 @@ class ProductCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Tree-Plugin';
+
+
     public static function form(Form $form): Form
     {
         return $form

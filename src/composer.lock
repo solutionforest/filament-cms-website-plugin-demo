@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba8b3ab8a5628a388c6cf60668e77853",
+    "content-hash": "63961e2d62bd8854fb9086d4e96e2a29",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -4746,6 +4746,77 @@
                 "source": "https://github.com/solution-forest/filament-tree"
             },
             "time": "2023-04-20T03:28:22+00:00"
+        },
+        {
+            "name": "solution-forest/tab-layout-plugin",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/solutionforest/filament-tab-plugin.git",
+                "reference": "1e2a1f52f02d06f4e4d100ea929a0bdd3e2f507b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/solutionforest/filament-tab-plugin/zipball/1e2a1f52f02d06f4e4d100ea929a0bdd3e2f507b",
+                "reference": "1e2a1f52f02d06f4e4d100ea929a0bdd3e2f507b",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^2.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.13.5"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "pestphp/pest-plugin-livewire": "^1.0",
+                "pestphp/pest-plugin-parallel": "^0.3",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SolutionForest\\TabLayoutPlugin\\TabLayoutPluginServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SolutionForest\\TabLayoutPlugin\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carly",
+                    "email": "info@solutionforest.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a layout plugin for Filament Admin",
+            "homepage": "https://github.com/solution-forest/tab-layout-plugin",
+            "keywords": [
+                "Solution Forest",
+                "laravel",
+                "tab-layout-plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/solution-forest/tab-layout-plugin/issues",
+                "source": "https://github.com/solution-forest/tab-layout-plugin"
+            },
+            "time": "2023-03-29T02:17:28+00:00"
         },
         {
             "name": "spatie/invade",
