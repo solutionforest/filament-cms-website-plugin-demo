@@ -13,7 +13,7 @@
         "laravel/tinker": "^2.8",
         "solution-forest/filament-cms-website-plugin": "^1.0",
         "solution-forest/filament-tree": "^1.0",
-        "solution-forest/tab-layout-plugin": "^0.0.2"
+        "solution-forest/tab-layout-plugin": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
