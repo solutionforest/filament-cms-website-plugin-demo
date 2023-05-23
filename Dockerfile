@@ -9,12 +9,12 @@ RUN apt-get update \
 
 
 COPY --chmod=755 docker/s6-conf/laravel-queue-default /etc/s6-overlay/s6-rc.d/laravel-queue-default
-COPY --chmod=755 docker/s6-conf/laravel-schadule /etc/s6-overlay/s6-rc.d/laravel-schadule
+COPY --chmod=755 docker/s6-conf/laravel-schedule /etc/s6-overlay/s6-rc.d/laravel-schedule
 
-COPY --chmod=755 docker/s6-conf/scripts/laravel-schadule /etc/s6-overlay/scripts/laravel-schadule
+COPY --chmod=755 docker/s6-conf/scripts/laravel-schedule /etc/s6-overlay/scripts/laravel-schedule
 COPY --chmod=755 docker/s6-conf/scripts/laravel-queue-default /etc/s6-overlay/scripts/laravel-queue-default
 
-COPY --chmod=755 docker/s6-conf/user/contents.d/laravel-schadule /etc/s6-overlay/s6-rc.d/user/contents.d/laravel-schadule
+COPY --chmod=755 docker/s6-conf/user/contents.d/laravel-schedule /etc/s6-overlay/s6-rc.d/user/contents.d/laravel-schedule
 COPY --chmod=755 docker/s6-conf/user/contents.d/laravel-queue-default /etc/s6-overlay/s6-rc.d/user/contents.d/laravel-queue-default
 
 COPY src /var/www/html
