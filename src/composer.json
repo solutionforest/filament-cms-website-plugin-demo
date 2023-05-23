@@ -11,8 +11,8 @@
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "solution-forest/filament-cms-website-plugin": "^1.0",
-        "solution-forest/filament-tree": "^1.0",
+        "solution-forest/filament-cms-website-plugin": "^1.0.1",
+        "solution-forest/filament-tree": "^1.2",
         "solution-forest/tab-layout-plugin": "^1.0"
     },
     "require-dev": {
