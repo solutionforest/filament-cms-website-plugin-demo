@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee10ba180c62b2b8e6a14b1f4f808311",
+    "content-hash": "0a0c93db1de700e614a4c4c496832302",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -4598,12 +4598,12 @@
         },
         {
             "name": "solution-forest/filament-cms-website-plugin",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "dist": {
                 "type": "zip",
-                "url": "https://filament-cms-website-plugin.composer.sh/download/9979f73c-3b0e-4606-9635-378dc9157750/filament-cms-website-plugin-1.0.3.zip",
-                "reference": "2ccf03437afb19d4518929fd9d75399cd600c2d9",
-                "shasum": "de7f3fca44ac8234e0c2e6fd8bfa53497ca9691a"
+                "url": "https://filament-cms-website-plugin.composer.sh/download/997a7818-0ea1-4592-a246-1989ccea8847/filament-cms-website-plugin-1.0.4.zip",
+                "reference": "1a990184e676f2f853f443ad318580ec6c55dc14",
+                "shasum": "c39cefd265a6b27f199cbe542523e028762a92f8"
             },
             "require": {
                 "bensampo/laravel-enum": "^6.3",
@@ -4611,7 +4611,7 @@
                 "livewire/livewire": "^2.12",
                 "php": "^8.0",
                 "ralphjsmit/laravel-filament-seo": "^1.0",
-                "solution-forest/filament-tree": "1.3.1",
+                "solution-forest/filament-tree": "1.3.2",
                 "spatie/laravel-data": "^3.4",
                 "spatie/laravel-package-tools": "^1.13.5"
             },
@@ -4673,20 +4673,20 @@
                 "issues": "https://github.com/solution-forest/filament-cms-website-plugin/issues",
                 "source": "https://github.com/solution-forest/filament-cms-website-plugin"
             },
-            "time": "2023-06-23T03:34:15+00:00"
+            "time": "2023-06-23T09:33:25+00:00"
         },
         {
             "name": "solution-forest/filament-tree",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/solutionforest/filament-tree.git",
-                "reference": "181796c8fdc6bc1c959ce1d2ebe5b26c554a051f"
+                "reference": "7975274eee3b093e85df97afe2fe4be8913d71f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solutionforest/filament-tree/zipball/181796c8fdc6bc1c959ce1d2ebe5b26c554a051f",
-                "reference": "181796c8fdc6bc1c959ce1d2ebe5b26c554a051f",
+                "url": "https://api.github.com/repos/solutionforest/filament-tree/zipball/7975274eee3b093e85df97afe2fe4be8913d71f3",
+                "reference": "7975274eee3b093e85df97afe2fe4be8913d71f3",
                 "shasum": ""
             },
             "require": {
@@ -4744,7 +4744,7 @@
                 "issues": "https://github.com/solution-forest/filament-tree/issues",
                 "source": "https://github.com/solution-forest/filament-tree"
             },
-            "time": "2023-06-21T04:43:36+00:00"
+            "time": "2023-06-23T07:59:56+00:00"
         },
         {
             "name": "solution-forest/tab-layout-plugin",
