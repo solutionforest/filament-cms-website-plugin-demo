@@ -15,4 +15,9 @@ class ProductCategory extends BaseWidget
     protected ?string $treeTitle = 'ProductCategory';
 
     protected bool $enableTreeTitle = true;
+
+    protected function hasDeleteAction(): bool
+    {
+        return true;
+    }
 }
