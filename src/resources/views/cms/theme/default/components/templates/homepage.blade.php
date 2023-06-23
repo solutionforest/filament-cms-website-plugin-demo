@@ -62,7 +62,7 @@
         </div>
         <div class="pt-8">
             @php
-                $blogs = \SolutionForest\FilamentCms\Support\Utils::getContentType('blogs')->get(5);
+                $blogs = \SolutionForest\FilamentCms\Support\Utils::getContentType('blogs')->paginate(5);
             @endphp
             @foreach($blogs as $index => $blog)
 

@@ -1,20 +1,13 @@
 <?php
 
-namespace App\CmsPages\Templates;
+namespace App\CmsPages\Templates\ContentType;
 
 use Filament\Forms;
 use SolutionForest\FilamentCms\CmsPages\Contracts\CmsPageTemplate;
-use SolutionForest\FilamentCms\CmsPages\Renderer\AtomicDesignPageRenderer;
+use SolutionForest\FilamentCms\CmsPages\Templates\IndexContentTypeTemplate as BaseTemplate;
 
-final class BlogIndexTemplate implements CmsPageTemplate
+class BlogIndex extends BaseTemplate implements CmsPageTemplate
 {
-    protected static ?string $view = null;
-
-    public static function title(): string
-    {
-        return 'BlogIndexTemplate';
-    }
-
     public static function schema(): array
     {
         return [
@@ -28,13 +21,13 @@ final class BlogIndexTemplate implements CmsPageTemplate
         ];
     }
 
-    public static function getRenderer(): ?string
+    public static function title(): string
     {
-        return static::$view ?? AtomicDesignPageRenderer::class;
+        return 'BlogIndex';
     }
 
-    public static function hiddenOnTemplateOptions(): bool
+    public static function getIndexPageKey()
     {
-        return false;
+        return '10';
     }
 }
