@@ -6,6 +6,9 @@
     /** @var ?\SolutionForest\FilamentCms\Dto\CmsPageData $page */
 
     $theme = FilamentCms::getCurrentTheme();
+    $content = data_get($page->data, 'content' , '');
+    $categoryTags = $page->tags->filter(fn ($tag) => $tag->category == 'category');
+
 @endphp
 
 <x-dynamic-component
@@ -14,7 +17,13 @@
 
     <div class="pt-16 lg:pt-20">
         <div class="border-b border-grey-lighter pb-8 sm:pb-12">
-          <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8">category</span>
+          @foreach ($categoryTags as $categoryTag)
+            <a href="#">
+              <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8">
+                {{ $categoryTag->name }}
+              </span>
+            </a>
+          @endforeach
           <h2 class="block font-body text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl">
             {{ $page->title }}
           </h2>
@@ -29,9 +38,6 @@
           </div>
         </div>
         <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12 text-primary dark:text-white">
-         @php
-            $content = data_get($page->data, 'content' , '')
-            @endphp 
          {!! $content !!}
         </div>
       </div>

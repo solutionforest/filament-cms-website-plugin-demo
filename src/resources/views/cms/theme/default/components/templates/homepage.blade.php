@@ -66,12 +66,19 @@
             @endphp
             @foreach($blogs as $index => $blog)
 
+              @php
+                  $categoryTags = $blog->tags->filter(fn ($tag) => $tag->category == 'category');
+              @endphp
                 <div 
                 @class([
                     'border-b border-grey-lighter pb-8',
                     'pt-10' => $index !== 0,
                 ])>
-                    <span class="mb-4 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green">category</span>
+                  @foreach ($categoryTags as $categoryTag)
+                    <span class="mb-4 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green">
+                      {{ $categoryTag->name }}
+                    </span>
+                  @endforeach
                     <a href="{{ $blog->draftPage->getUrl()}}" class="block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary">
                         {{ $blog->title }}
                     </a><div class="flex items-center pt-4">

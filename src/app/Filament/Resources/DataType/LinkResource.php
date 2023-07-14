@@ -11,7 +11,7 @@ use SolutionForest\FilamentCms\Filament\Resources\DataTypePageBaseResource as Ba
 
 class LinkResource extends BaseResource
 {
-    // use \Filament\Resources\Concerns\Translatable;
+    use \Filament\Resources\Concerns\Translatable;
 
     protected static ?int $navigationSort = null;
 

@@ -8,9 +8,9 @@ use App\Filament\Resources\ContentType\BlogResource;
 
 class EditBlog extends EditRecord
 {
-    // use EditRecord\Concerns\Translatable {
-    //     EditRecord\Concerns\Translatable::getActions as protected translatableActions;
-    // }
+    use EditRecord\Concerns\Translatable {
+        EditRecord\Concerns\Translatable::getActions as protected translatableActions;
+    }
     use Concern\CanPublishPage;    
     use Concern\CanPreviewPage {
         Concern\CanPreviewPage::getActions as protected previewPageActions;
@@ -31,7 +31,7 @@ class EditBlog extends EditRecord
     public function getActions(): array
     {
         return array_merge(
-            // [$this->getActiveFormLocaleSelectAction()],            
+            [$this->getActiveFormLocaleSelectAction()],            
             $this->previewPageActions(),
         );
     }

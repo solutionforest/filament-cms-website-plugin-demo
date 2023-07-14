@@ -17,7 +17,7 @@
           <img src="/assets/img/icon-contact.png" alt="icon envelope">
         </div>
         <h1 class="pt-5 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl">
-          Contact
+          {{ $page->title }}
         </h1>
         <div class="pr-2 pt-3 sm:pt-0">
           <p class="font-body text-xl font-light text-primary dark:text-white">

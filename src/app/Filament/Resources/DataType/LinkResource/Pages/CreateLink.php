@@ -8,7 +8,7 @@ use App\Filament\Resources\DataType\LinkResource;
 
 class CreateLink extends CreateRecord
 {
-    // use CreateRecord\Concerns\Translatable;
+    use CreateRecord\Concerns\Translatable;
     use Concern\CanPublishPage;
 
     protected static string $resource = LinkResource::class;
@@ -21,7 +21,7 @@ class CreateLink extends CreateRecord
     public function getActions(): array
     {
         return array_merge(
-            // [$this->getActiveFormLocaleSelectAction()],
+            [$this->getActiveFormLocaleSelectAction()],
             parent::getActions() ?? [],
         );
     }

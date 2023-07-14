@@ -1,5 +1,14 @@
 <?php
 
+use App\Filament\Resources\CmsPageNavigationCategoryResource;
+use App\Filament\Resources\CmsPageResource;
+use App\Filament\Resources\CmsTagResource;
+use App\Http\Middleware\WebsiteLanguageMiddleware;
+use App\Models\CmsPage;
+use App\Models\CmsPageNavigation;
+use App\Models\CmsPublishedPage;
+use App\Models\CmsTag;
+use App\Models\CmsTagCategory;
 use SolutionForest\FilamentCms\CmsPages\Renderer;
 use SolutionForest\FilamentCms\CmsPages\Templates;
 use SolutionForest\FilamentCms\Filament\Resources;
@@ -12,7 +21,10 @@ return [
 
     'default_layout' => 'app',
 
-    'locales' => [],
+    'locales' => [
+        'en',
+        'zh-HK',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -23,27 +35,33 @@ return [
     |
     */
     'middleware' => [
-        'web' => [],
+        'web' => [
+            WebsiteLanguageMiddleware::class,
+        ],
     ],
 
     'filament' => [
         'resources' => [
-            'cms_page' => Resources\CmsPageResource::class,
-            'cms_page_navigation_category' => Resources\CmsPageNavigationCategoryResource::class,
+            'cms_page' => CmsPageResource::class,
+            'cms_page_navigation_category' => CmsPageNavigationCategoryResource::class,
+            'cms_tag' => CmsTagResource::class,
         ],
         'navigation' => [
             'icon' => [
-                Resources\CmsPageResource::class => 'heroicon-o-document',
-                Resources\CmsPageNavigationCategoryResource::class => 'heroicon-o-menu',
+                CmsPageResource::class => 'heroicon-o-document',
+                CmsPageNavigationCategoryResource::class => 'heroicon-o-menu',
+                CmsTagResource::class => 'heroicon-o-tag',
             ],
             'sort' => [
-                Resources\CmsPageResource::class => -3,
-                Resources\CmsPageNavigationCategoryResource::class => -2,
+                CmsPageResource::class => -10,
+                CmsTagResource::class => -9,
+                CmsPageNavigationCategoryResource::class => -8,
             ],
         ],
         'recordTitleAttribute' => [
             'cms_page' => 'title',
             'cms_navigation_category' => 'title',
+            'cms_tag' => 'name',
         ],
     ],
     'cms_pages' => [
@@ -79,10 +97,13 @@ return [
     ],
 
     'models' => [
-        'cms_page' => Models\CmsPage::class,
-        'cms_published_page' => Models\CmsPublishedPage::class,
-        'cms_page_navigation' => Models\CmsPageNavigation::class,
+        'cms_page' => CmsPage::class,
+        'cms_published_page' => CmsPublishedPage::class,
+        'cms_page_navigation' => CmsPageNavigation::class,
         'cms_page_navigation_category' => Models\CmsPageNavigationCategory::class,
+        'cms_tag' => CmsTag::class,
+        'cms_taggable' => Models\CmsTaggable::class,
+        'cms_tag_category' => CmsTagCategory::class,
     ],
 
     'column_names' => [

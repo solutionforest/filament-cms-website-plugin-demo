@@ -9,7 +9,7 @@ use App\Filament\Resources\DataType\LinkResource;
 
 class ListLinks extends ListRecords
 {
-    // use ListRecords\Concerns\Translatable;
+    use ListRecords\Concerns\Translatable;
 
     protected static string $resource = LinkResource::class;
 
@@ -31,7 +31,7 @@ class ListLinks extends ListRecords
     protected function getActions(): array
     {
         return array_merge(
-            // [$this->getActiveLocaleSelectAction()],
+            [$this->getActiveLocaleSelectAction()],
             parent::getActions(),
         );
     }
