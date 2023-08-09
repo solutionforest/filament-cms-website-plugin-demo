@@ -6,6 +6,8 @@ use Filament\Resources\Pages\ListRecords;
 use SolutionForest\FilamentCms\Concern;
 use SolutionForest\FilamentCms\Support\Utils;
 use App\Filament\Resources\ContentType\BlogResource;
+use Filament\Actions\CreateAction;
+use Filament\Actions\LocaleSwitcher;
 
 class ListBlogs extends ListRecords
 {
@@ -30,9 +32,9 @@ class ListBlogs extends ListRecords
 
     protected function getActions(): array
     {
-        return array_merge(
-            [$this->getActiveLocaleSelectAction()],
-            parent::getActions(),
-        );
+        return [
+            LocaleSwitcher::make(),
+            CreateAction::make(),
+        ];
     }
 }

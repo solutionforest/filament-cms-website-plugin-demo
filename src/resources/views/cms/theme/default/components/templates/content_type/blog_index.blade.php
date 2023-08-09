@@ -52,7 +52,7 @@
             @foreach ($categoryTags as $categoryTag)
                 <a href="#">
                     <span class="mb-4 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green">
-                        {{ $categoryTag->name }}
+                        {{ $categoryTag->title }}
                     </span>
                 </a>
             @endforeach

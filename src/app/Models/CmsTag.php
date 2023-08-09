@@ -11,6 +11,6 @@ class CmsTag extends BaseModel
 {
     use HasTranslations;
     protected $translatable = [
-        'name',
+        'title',
     ];
 }

@@ -3,7 +3,7 @@
 use App\Filament\Resources\CmsPageNavigationCategoryResource;
 use App\Filament\Resources\CmsPageResource;
 use App\Filament\Resources\CmsTagResource;
-use App\Http\Middleware\WebsiteLanguageMiddleware;
+use App\Http\Middleware\Localization;
 use App\Models\CmsPage;
 use App\Models\CmsPageNavigation;
 use App\Models\CmsPublishedPage;
@@ -36,7 +36,10 @@ return [
     */
     'middleware' => [
         'web' => [
-            WebsiteLanguageMiddleware::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            Localization::class,
         ],
     ],
 
@@ -49,7 +52,7 @@ return [
         'navigation' => [
             'icon' => [
                 CmsPageResource::class => 'heroicon-o-document',
-                CmsPageNavigationCategoryResource::class => 'heroicon-o-menu',
+                CmsPageNavigationCategoryResource::class => 'heroicon-o-bars-3-center-left',
                 CmsTagResource::class => 'heroicon-o-tag',
             ],
             'sort' => [

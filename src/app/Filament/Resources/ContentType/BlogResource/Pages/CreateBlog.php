@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ContentType\BlogResource\Pages;
 use Filament\Resources\Pages\CreateRecord;
 use SolutionForest\FilamentCms\Concern;
 use App\Filament\Resources\ContentType\BlogResource;
+use Filament\Actions\LocaleSwitcher;
 
 class CreateBlog extends CreateRecord
 {
@@ -21,7 +22,7 @@ class CreateBlog extends CreateRecord
     public function getActions(): array
     {
         return array_merge(
-            [$this->getActiveFormLocaleSelectAction()],
+            [LocaleSwitcher::make()],
             parent::getActions() ?? [],
         );
     }

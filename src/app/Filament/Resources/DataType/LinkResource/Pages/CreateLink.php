@@ -21,8 +21,8 @@ class CreateLink extends CreateRecord
     public function getActions(): array
     {
         return array_merge(
-            [$this->getActiveFormLocaleSelectAction()],
-            parent::getActions() ?? [],
+            // [$this->getActiveFormLocaleSelectAction()],
+            // parent::getActions() ?? [],
         );
     }
 

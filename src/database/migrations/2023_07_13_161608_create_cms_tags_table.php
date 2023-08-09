@@ -17,12 +17,12 @@ return new class extends Migration
         });
         Schema::create('cms_tags', function (Blueprint $table) {
             $table->id();
-            $table->text('name')->index();
+            $table->string('name')->index();
             $table->string('slug');
             $table->bigInteger('category_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->unique(['name', 'category_id']);
+            $table->unique(['slug', 'category_id']);
         });
         Schema::create('cms_taggables', function (Blueprint $table) {
             $table->id();

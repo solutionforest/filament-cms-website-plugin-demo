@@ -9,7 +9,7 @@ use App\Filament\Resources\DataType\LinkResource;
 class EditLink extends EditRecord
 {
     use EditRecord\Concerns\Translatable {
-        EditRecord\Concerns\Translatable::getActions as protected translatableActions;
+    //     EditRecord\Concerns\Translatable::getActions as protected translatableActions;
     }
     use Concern\CanPublishPage;
 
@@ -28,7 +28,7 @@ class EditLink extends EditRecord
     public function getActions(): array
     {
         return array_merge(
-            [$this->getActiveFormLocaleSelectAction()],
+            // [$this->getActiveFormLocaleSelectAction()],
         );
     }
 }

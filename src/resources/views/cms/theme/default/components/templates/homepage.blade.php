@@ -76,7 +76,7 @@
                 ])>
                   @foreach ($categoryTags as $categoryTag)
                     <span class="mb-4 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green">
-                      {{ $categoryTag->name }}
+                      {{ $categoryTag->title }}
                     </span>
                   @endforeach
                     <a href="{{ $blog->draftPage->getUrl()}}" class="block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary">

@@ -3,23 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductCategoryResource\Pages;
-use App\Filament\Resources\ProductCategoryResource\RelationManagers;
 use App\Models\ProductCategory;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Table;
 
 class ProductCategoryResource extends Resource
 {
     protected static ?string $model = ProductCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-folder';
 
     protected static ?string $navigationGroup = 'Tree-Plugin';
 

@@ -18,12 +18,20 @@
     @endif
     @stack('beforeCoreStyles')
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/assets/styles/main.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets/styles/main.min.css')}}">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
     @stack('styles')
 </head>
 
 <body x-data="global()" x-init="themeInit()"
-    :class="isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''"
+    :class="{
+        'max-h-screen overflow-hidden relative' : isMobileMenuOpen,
+    }"
     class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
 
     @section('header')
@@ -38,7 +46,7 @@
         @include("cms.theme.{$theme}.footer")
     @show
 
-    <script src="/assets/js/main.min.js"></script>
+    <script src="{{ asset('/assets/js/main.js') }}"></script>
     @stack('beforeCoreScripts')
     @stack('scripts')
 

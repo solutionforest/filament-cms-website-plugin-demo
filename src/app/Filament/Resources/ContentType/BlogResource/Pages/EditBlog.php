@@ -5,11 +5,12 @@ namespace App\Filament\Resources\ContentType\BlogResource\Pages;
 use Filament\Resources\Pages\EditRecord;
 use SolutionForest\FilamentCms\Concern;
 use App\Filament\Resources\ContentType\BlogResource;
+use Filament\Actions\LocaleSwitcher;
 
 class EditBlog extends EditRecord
 {
     use EditRecord\Concerns\Translatable {
-        EditRecord\Concerns\Translatable::getActions as protected translatableActions;
+        // EditRecord\Concerns\Translatable::getActions as protected translatableActions;
     }
     use Concern\CanPublishPage;    
     use Concern\CanPreviewPage {
@@ -31,7 +32,7 @@ class EditBlog extends EditRecord
     public function getActions(): array
     {
         return array_merge(
-            [$this->getActiveFormLocaleSelectAction()],            
+            [LocaleSwitcher::make()],      
             $this->previewPageActions(),
         );
     }

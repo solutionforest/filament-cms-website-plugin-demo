@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('change-locale/{locale}', function ($locale) {
+
+    App::setLocale($locale);
+    Session::put('locale', $locale);
+
+    return redirect()->back();
+})->name('locale.switch');
