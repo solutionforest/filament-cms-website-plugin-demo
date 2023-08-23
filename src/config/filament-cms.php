@@ -67,7 +67,13 @@ return [
             'cms_tag' => 'name',
         ],
     ],
+    
+    'enable_page_tags' => true,
+    
+    'enable_audit_log' => true,
+
     'cms_pages' => [
+
         'include_default_template' => true,
 
         'templates' => [

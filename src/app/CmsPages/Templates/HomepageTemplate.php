@@ -24,24 +24,24 @@ final class HomepageTemplate implements CmsPageTemplate
         return [
             Forms\Components\Card::make()
                 ->schema([
-                Forms\Components\TextInput::make('title1')->label("Title"),
-                Forms\Components\TextInput::make('subtitle')->label("Sub Title"),
-                Forms\Components\TextInput::make('button_text')->label("Button Text"),
-                TextInput::make('button_link')
-    ->suffixAction(fn (?string $state): Action =>
-        Action::make('visit')
-            ->icon('heroicon-s-external-link')
-            ->url(
-                filled($state) ? "https://{$state}" : null,
-                shouldOpenInNewTab: true,
-            ),
-    ),
+                    Forms\Components\TextInput::make('title1')->label("Title"),
+                    Forms\Components\TextInput::make('subtitle')->label("Sub Title"),
+                    Forms\Components\TextInput::make('button_text')->label("Button Text"),
+                    TextInput::make('button_link')
+                        ->suffixAction(fn (?string $state): Action =>
+                            Action::make('visit')
+                                ->icon('heroicon-o-link')
+                                ->url(
+                                    filled($state) ? "https://{$state}" : null,
+                                    shouldOpenInNewTab: true,
+                                ),
+                        ),
                     RichEditor::make('my_story')->label("My Story")
-                ])->label("Section 1"),
-                Forms\Components\Card::make()
-                ->schema([
-                    
-                ]),
+                    ])->label("Section 1"),
+                    Forms\Components\Card::make()
+                    ->schema([
+                        
+                    ]),
         ];
     }
 
