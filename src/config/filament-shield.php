@@ -1,5 +1,8 @@
 <?php
 
+use App\Filament\Resources\ContentType\DocumentResource;
+use App\Filament\Widgets\FilamentCmsInfo;
+
 return [
     'shield_resource' => [
         'should_register_navigation' => true,
@@ -28,14 +31,14 @@ return [
             'view_any',
             'create',
             'update',
-            'restore',
-            'restore_any',
-            'replicate',
-            'reorder',
+            // 'restore',
+            // 'restore_any',
+            // 'replicate',
+            // 'reorder',
             'delete',
             'delete_any',
-            'force_delete',
-            'force_delete_any',
+            // 'force_delete',
+            // 'force_delete_any',
         ],
 
         'page' => 'page',
@@ -46,7 +49,7 @@ return [
         'pages' => true,
         'widgets' => true,
         'resources' => true,
-        'custom_permissions' => false,
+        'custom_permissions' => true,
     ],
 
     'generator' => [
@@ -61,10 +64,13 @@ return [
         ],
 
         'widgets' => [
-            'AccountWidget', 'FilamentInfoWidget',
+            'AccountWidget', 
+            'FilamentInfoWidget',
+            'FilamentCmsInfo', // FilamentCmsInfo::class,
         ],
 
-        'resources' => [],
+        'resources' => [
+        ],
     ],
 
     'discovery' => [

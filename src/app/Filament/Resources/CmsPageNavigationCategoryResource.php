@@ -3,22 +3,31 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CmsPageNavigationCategoryResource\Pages;
-use App\Filament\Resources\CmsPageNavigationCategoryResource\RelationManagers;
 use App\Models\CmsPageNavigationCategory;
-use Filament\Forms;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Resources\Concerns\Translatable;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Table;
 use SolutionForest\FilamentCms\Filament\Resources\CmsPageNavigationCategoryResource as BaseResource;
 
-class CmsPageNavigationCategoryResource extends BaseResource
+class CmsPageNavigationCategoryResource extends BaseResource implements 
+    HasShieldPermissions // permission shield
 {
     use Translatable;
     protected static ?string $model = CmsPageNavigationCategory::class;
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'delete',
+            'delete_any',
+            'update_navigation',
+        ];
+    }
 
     public static function getPages(): array
     {
@@ -29,4 +38,20 @@ class CmsPageNavigationCategoryResource extends BaseResource
             'navigations' => Pages\EditCmsPageNavigation::route('/{category}/navigations'),
         ];
     }    
+
+    public static function table(Table $table): Table
+    {
+        $table = parent::table($table);
+        
+        $actions = collect($table->getActions())
+            ->map(fn (Tables\Actions\Action $action) => $action->getName() == 'navigations'
+                // permission of navigation category 
+                // @todo add to plugin
+                ? $action->authorize('update_cms::page::navigation::category')
+                : $action
+            )
+            ->toArray();
+
+        return $table->actions($actions);
+    }
 }

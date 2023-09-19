@@ -14,4 +14,12 @@ class CmsPage extends BaseModel
         'title',
         'data',
     ];
+
+    public function isDocumentPage(): bool
+    {
+        if (is_null($this->parent_id)) {
+            return $this->slug == 'docs';
+        }
+        return $this->parentPage?->isDocumentPage() ?? false;
+    }
 }
