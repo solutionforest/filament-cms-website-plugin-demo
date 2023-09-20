@@ -33,13 +33,13 @@
                                     }
                                 @endphp
                                 
-                            <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                                <div>
-                                    <a href="{{ $url }}" class="font-semibold text-gray-900">
-                                        {{ $item->title }}
-                                    </a>
-                                </div>
-                            </div>
+                                <a href="{{ $url }}">
+                                    <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                                        <div class="font-semibold text-gray-900">
+                                            {{ $item->title }}
+                                        </div>
+                                    </div>
+                                </a>
                             @endforeach
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                     @endphp
                     <li class="group relative mr-6 mb-1">
                         <div
-                            class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
-                        </div>
+                        class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
+                            </div>
                         <a href="{{ $url }}"
                             class="relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary">{{ $item->title }}</a>
                     </li>
