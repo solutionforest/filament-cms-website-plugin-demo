@@ -23,23 +23,20 @@
 <x-dynamic-component
     component="filament-cms::{{$theme}}.page"
     :layout="$layout">
-    <div class="border border-gray-100 p-4 rounded-xl shadow-md">
+    <div class="p-4">
         <span class="text-2xl text-gray-600 my-10 dark:text-white">
             Filament CMS Documentation
         </span>
     </div>
     @if ($childs)
-        <div class="p-4">
-            <ul class="list-disc">
-                @foreach ($childs as $docPage)
-
-                    <li>
-                        <a href="{{ $docPage->getUrl() }}">
-                            {{ $docPage->title }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+            @foreach ($childs as $docPage)
+                <a href="{{ $docPage->getUrl() }}">
+                    <div class="border rounded-xl shadow-md p-4">
+                        {{ $docPage->title }}
+                    </div>
+                </a>
+            @endforeach
         </div>
     @endif
 </x-dynamic-component>
