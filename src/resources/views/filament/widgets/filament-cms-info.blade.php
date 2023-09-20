@@ -2,20 +2,23 @@
     <x-filament::section>
         <div class="flex items-center gap-x-3">
             <div class="flex-1">
-                <a
-                    href="{{ $this->getFilamentCmsPluginLink() }}"
-                    target="_blank"
-                    class="font-bold"
-                >
-                    Filament CMS Website Plugin
-                </a>
-
-                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    Current Version
-                </p>
-                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    {{ $this->getFilamentCmsPluginInstallVersion() }}
-                </p>
+                @foreach ($this->getPluginInfos() ?? [] as $pluginInfo)
+                    @php
+                        $pluginUrl = data_get($pluginInfo, 'url');
+                        $name = data_get($pluginInfo, 'name');
+                        $version = data_get($pluginInfo, 'version');
+                    @endphp
+                    <div>
+                        <a href="{{ $pluginUrl }}" target="_blank" class="mt-2">
+                            <span class="text-sm mr-2">
+                                {{ $name }}
+                            </span>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">
+                                {{ $version }}
+                            </span>
+                        </a>
+                    </div>
+                @endforeach
             </div>
 
             <div class="flex flex-col items-end gap-y-1">

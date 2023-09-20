@@ -11,14 +11,20 @@ class FilamentCmsInfo extends Widget
 
     protected int | string | array $columnSpan = 'full';
 
-    public function getFilamentCmsPluginInstallVersion()
+    public function getPluginInfos(): array
     {
-        return InstalledVersions::getPrettyVersion($this->getPackageName());
-    }
-
-    public function getFilamentCmsPluginLink()
-    {
-        return 'https://filamentphp.com/plugins/solution-forest-cms-website';
+        return [
+            [
+                'name' => 'Filament CMS Website Plugin',
+                'version' => $this->getPluginInstallVersion($this->getFilamentCmsPackageName()),
+                'url' => $this->getFilamentCmsPluginLink(),
+            ],
+            [
+                'name' => 'Tree',
+                'version' => $this->getPluginInstallVersion($this->getFilamentTreePackageName()),
+                'url' => $this->getFilamentTreePluginLink(),
+            ],
+        ];
     }
 
     public function getFilamentCmsPluginDocLink()
@@ -28,8 +34,28 @@ class FilamentCmsInfo extends Widget
         ]);
     }
 
-    private function getPackageName(): string
+    public function getPluginInstallVersion($packageName)
+    {
+        return InstalledVersions::getPrettyVersion($packageName);
+    }
+
+    private function getFilamentCmsPluginLink()
+    {
+        return 'https://filamentphp.com/plugins/solution-forest-cms-website';
+    }
+
+    private function getFilamentTreePluginLink()
+    {
+        return 'https://filamentphp.com/plugins/solution-forest-tree';
+    }
+
+    private function getFilamentCmsPackageName(): string
     {
         return 'solution-forest/filament-cms-website-plugin';
+    }
+
+    private function getFilamentTreePackageName(): string
+    {
+        return 'solution-forest/filament-tree';
     }
 }
