@@ -246,52 +246,70 @@ class CmsPagePolicy
         return $user->can('reorder_cms::page');
     }
 
-    // /**
-    //  * Determine whether the user can publish.
-    //  *
-    //  * @param  \App\Models\User  $user
-    //  * @param  null|\App\Models\CmsPage $cmsPage
-    //  * @param null|string $resourceClass
-    //  * @return bool
-    //  */
-    // public function publish(User $user, ?CmsPage $cmsPage, ?string $resourceClass = null): bool
-    // {
-    //     if (! $this->isNormalPageResource($resourceClass)) {
-    //         return $this->authorizeCmsPageClass($user, $resourceClass, 'publish', $cmsPage);
-    //     }
-    //     return $user->can('publish_cms::page');
-    // }
+    /**
+     * Determine whether the user can publish.
+     *
+     * @param  \App\Models\User  $user
+     * @param  null|\App\Models\CmsPage $cmsPage
+     * @param null|string $resourceClass
+     * @return bool
+     */
+    public function publish(User $user, ?CmsPage $cmsPage, ?string $resourceClass = null): bool
+    {
+        return $user->hasAnyPermission('publish');
+        // if (! $this->isNormalPageResource($resourceClass)) {
+        //     return $this->authorizeCmsPageClass($user, $resourceClass, 'publish', $cmsPage);
+        // }
+        // return $user->can('publish_cms::page');
+    }
 
-    // /**
-    //  * Determine whether the user can unpublish.
-    //  *
-    //  * @param  \App\Models\User  $user
-    //  * @param  null|\App\Models\CmsPage $cmsPage
-    //  * @param null|string $resourceClass
-    //  * @return bool
-    //  */
-    // public function unpublish(User $user, ?CmsPage $cmsPage, ?string $resourceClass = null): bool
-    // {
-    //     if (! $this->isNormalPageResource($resourceClass)) {
-    //         return $this->authorizeCmsPageClass($user, $resourceClass, 'unpublish', $cmsPage);
-    //     }
-    //     return $user->can('unpublish_cms::page');
-    // }
+    /**
+     * Determine whether the user can unpublish.
+     *
+     * @param  \App\Models\User  $user
+     * @param  null|\App\Models\CmsPage $cmsPage
+     * @param null|string $resourceClass
+     * @return bool
+     */
+    public function unpublish(User $user, ?CmsPage $cmsPage, ?string $resourceClass = null): bool
+    {
+        return $user->hasAnyPermission('unpublish');
+        // if (! $this->isNormalPageResource($resourceClass)) {
+        //     return $this->authorizeCmsPageClass($user, $resourceClass, 'unpublish', $cmsPage);
+        // }
+        // return $user->can('unpublish_cms::page');
+    }
 
-    // /**
-    //  * Determine whether the user can schedule publish.
-    //  *
-    //  * @param  \App\Models\User  $user
-    //  * @param  null|\App\Models\CmsPage $cmsPage
-    //  * @param null|string $resourceClass
-    //  * @return bool
-    //  */
-    // public function schedulePublish(User $user, ?CmsPage $cmsPage, ?string $resourceClass = null): bool
-    // {
-    //     if (! $this->isNormalPageResource($resourceClass)) {
-    //         return $this->authorizeCmsPageClass($user, $resourceClass, 'schedulePublish', $cmsPage);
-    //     }
-    //     return $user->can('schedule_publish_cms::page');
-    // }
+    /**
+     * Determine whether the user can schedule publish.
+     *
+     * @param  \App\Models\User  $user
+     * @param  null|\App\Models\CmsPage $cmsPage
+     * @param null|string $resourceClass
+     * @return bool
+     */
+    public function schedulePublish(User $user, ?CmsPage $cmsPage, ?string $resourceClass = null): bool
+    {
+        return $user->hasAnyPermission('schedulePublish');
+        // if (! $this->isNormalPageResource($resourceClass)) {
+        //     return $this->authorizeCmsPageClass($user, $resourceClass, 'schedulePublish', $cmsPage);
+        // }
+        // return $user->can('schedule_publish_cms::page');
+    }
 
+    public function audit(User $user, $cmsPage, $pageClass = null, $resourceClass = null)
+    {
+        return $user->hasAnyPermission([
+            // 'audit_cms::page',
+            'audit',
+        ]);
+    }
+
+    public function rollbackAudit(User $user, $cmsPage, $pageClass = null, $resourceClass = null)
+    {
+        return $user->hasAnyPermission([
+            // 'audit_rollback_cms::page',
+            'rollbackAudit',
+        ]);
+    }
 }

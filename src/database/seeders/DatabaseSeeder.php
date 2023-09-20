@@ -67,6 +67,9 @@ class DatabaseSeeder extends Seeder
     private function getCustomPermissions(): array
     {
         return [
+            'publish',
+            'unpublish',
+            'schedulePublish',
             'audit',
             'rollbackAudit',
         ];

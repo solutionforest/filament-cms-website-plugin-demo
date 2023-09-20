@@ -5586,9 +5586,9 @@
             "version": "2.0.5",
             "dist": {
                 "type": "zip",
-                "url": "https://filament-cms-website-plugin.composer.sh/download/9a2d2ddc-fde8-45cc-a83d-6396673a09bd/filament-cms-website-plugin-2.0.5.zip",
-                "reference": "d18baea0ff19fe20887f27f3f60b1a5916ea9729",
-                "shasum": "e9159102dd0f07ed00dcae8dc6f3c94aaa8ebefd"
+                "url": "https://filament-cms-website-plugin.composer.sh/download/9a2d4179-15de-401a-81c7-60cec06e4177/filament-cms-website-plugin-2.0.5.zip",
+                "reference": "17b56c0060f094e7d251fa38b61ab090fcd14d21",
+                "shasum": "c9b17e65856c749a9e372eaa8e0bbb360a5c5f3f"
             },
             "require": {
                 "bensampo/laravel-enum": "^6.3",
@@ -5657,7 +5657,7 @@
                 "issues": "https://github.com/solution-forest/filament-cms-website-plugin/issues",
                 "source": "https://github.com/solution-forest/filament-cms-website-plugin"
             },
-            "time": "2023-09-20T05:46:57+00:00"
+            "time": "2023-09-20T06:33:52+00:00"
         },
         {
             "name": "solution-forest/filament-tree",
