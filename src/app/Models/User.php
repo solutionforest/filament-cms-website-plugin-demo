@@ -54,14 +54,16 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($this->isSuperAdmin()) {
-            return true;
-        }
-        return $this->email === "demo@solutionforest.net";
+        return true;
     }
 
     public function isSuperAdmin(): bool
     {
         return $this->hasRole(Utils::getSuperAdminName());
+    }
+
+    public function isDemoUser(): bool
+    {
+        return $this->email === "demo@solutionforest.net";
     }
 }

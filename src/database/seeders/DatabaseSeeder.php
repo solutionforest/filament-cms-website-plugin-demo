@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         return [
             'guest' => Permission::query()
                 ->whereNotIn('name', [
-                    'create_shield::role',
+                    // 'create_shield::role',
                     'delete_shield::role',
                     'delete_any_shield::role',
                     'view_content::type::document',

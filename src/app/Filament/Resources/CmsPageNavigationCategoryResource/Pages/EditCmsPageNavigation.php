@@ -15,10 +15,6 @@ use SolutionForest\FilamentCms\Filament\Resources\CmsPageNavigationCategoryResou
 
 class EditCmsPageNavigation extends BasePage
 {
-    use HasPageShield {// page permission checking
-        HasPageShield::getPermissionName as private traitGetPermissionName;
-    } 
-
     protected static string $resource = CmsPageNavigationCategoryResource::class;
 
     protected function getActions(): array
@@ -27,21 +23,5 @@ class EditCmsPageNavigation extends BasePage
             LocaleSwitcher::make(),
             $this->getCreateAction(),
         ];
-    }
-
-    protected static function getPermissionName(): string
-    {
-        $resource = static::getResource();
-
-        $permissionIdentifier = FilamentShield::getPermissionIdentifier($resource);
-        $key = "update_navigation_{$permissionIdentifier}";
-        $entity = data_get(FilamentShield::getResources(), $permissionIdentifier, []);
-        $allResourcePermissions = array_keys(RoleResource::getResourcePermissionOptions($entity));
-
-        if (! empty($allResourcePermissions) && in_array($key, $allResourcePermissions)) {
-            return $key;
-        }
-
-        return static::traitGetPermissionName();
     }
 }
