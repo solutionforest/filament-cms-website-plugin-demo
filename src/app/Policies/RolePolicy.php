@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
+use BezhanSalleh\FilamentShield\Support\Utils;
 use Spatie\Permission\Models\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -53,6 +54,9 @@ class RolePolicy
      */
     public function update(User $user, Role $role): bool
     {
+        if ($role->name == Utils::getSuperAdminName() && ! $user->isSuperAdmin()) {
+            return false;
+        }
         return $user->can('update_shield::role');
     }
 
@@ -65,6 +69,9 @@ class RolePolicy
      */
     public function delete(User $user, Role $role): bool
     {
+        if ($role->name == Utils::getSuperAdminName() && ! $user->isSuperAdmin()) {
+            return false;
+        }
         return $user->can('delete_shield::role');
     }
 
