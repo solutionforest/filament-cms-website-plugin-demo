@@ -41,7 +41,8 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(FilamentCmsPanel::make())
             ->plugin(FilamentShieldPlugin::make())
             ->login(Login::class)
-            ->darkMode(false)
+            ->darkMode(true)
+            ->sidebarFullyCollapsibleOnDesktop()
             ->colors([
                 'primary' => '#007C90',
             ])
@@ -66,7 +67,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/admin/theme.css');
 
         $this->renderHook($panel);
 
