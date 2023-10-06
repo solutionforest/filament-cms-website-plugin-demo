@@ -38,4 +38,14 @@ class ProductCategory extends BaseWidget
     {
         return true;
     }
+
+    public function getTreeRecordIcon(?\Illuminate\Database\Eloquent\Model $record = null): ?string
+    {
+        // default null
+        if ($record?->getKey() == 1) {
+
+            return 'heroicon-o-shopping-bag';
+        }
+        return null;
+    }
 }
