@@ -34,6 +34,11 @@ class FilamentCmsInfo extends Widget
         ]);
     }
 
+    public function getDemoGithubLink()
+    {
+        return "https://github.com/solutionforest/filament-cms-website-plugin-demo";
+    }
+
     public function getPluginInstallVersion($packageName)
     {
         return InstalledVersions::getPrettyVersion($packageName);
