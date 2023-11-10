@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(config('filament-cms.locales')))
             ->plugin(FilamentCmsPanel::make())
             ->plugin(FilamentShieldPlugin::make())
+            ->globalSearch(false)
             ->login(Login::class)
             ->darkMode(true)
             ->sidebarFullyCollapsibleOnDesktop()
