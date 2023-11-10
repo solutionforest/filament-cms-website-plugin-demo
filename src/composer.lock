@@ -5599,17 +5599,18 @@
         },
         {
             "name": "solution-forest/filament-cms-website-plugin",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "dist": {
                 "type": "zip",
-                "url": "https://filament-cms-website-plugin.composer.sh/download/9a71f9ae-3b3b-4d0e-9956-a81e6b4a8dda/filament-cms-website-plugin-2.0.7.zip",
-                "reference": "537b2001b2eb3c33ecb4f74476527772217aad85",
-                "shasum": "df2b6a986bdd84a395561ed2f093b968771fd076"
+                "url": "https://filament-cms-website-plugin.composer.sh/download/9a93e94b-af0c-4142-bf78-0d3f9461fc65/filament-cms-website-plugin-2.0.8.zip",
+                "reference": "594bbb3376bdab6e35e005b37a4460b34c4623d7",
+                "shasum": "27442448bfda0e689465396cad2cefd89df94c0c"
             },
             "require": {
                 "bensampo/laravel-enum": "^6.3",
                 "filament/filament": "^3.0",
                 "filament/support": "^3.0",
+                "illuminate/contracts": "^10.0",
                 "owen-it/laravel-auditing": "^13.0",
                 "php": "^8.1",
                 "ralphjsmit/laravel-filament-seo": "^1.2",
@@ -5618,17 +5619,11 @@
                 "spatie/laravel-package-tools": "^1.15.0"
             },
             "require-dev": {
-                "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^7.9",
-                "nunomaduro/larastan": "^2.0.1",
                 "orchestra/testbench": "^8.0",
                 "pestphp/pest": "^2.0",
                 "pestphp/pest-plugin-arch": "^2.0",
-                "pestphp/pest-plugin-laravel": "^2.0",
-                "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "spatie/laravel-ray": "^1.26"
+                "pestphp/pest-plugin-laravel": "^2.0"
             },
             "type": "library",
             "extra": {
@@ -5651,14 +5646,30 @@
                     "SolutionForest\\FilamentCms\\Database\\Factories\\": "database/factories"
                 }
             },
+            "autoload-dev": {
+                "psr-4": {
+                    "SolutionForest\\FilamentCms\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "post-autoload-dump": [
+                    "@php ./vendor/bin/testbench package:discover --ansi"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Carly",
+                    "name": "carly",
                     "role": "Developer",
-                    "email": "info@solutionforest.net"
+                    "email": "carly.cheung@solutionforest.net"
                 }
             ],
             "description": "This is a filament cms plugin for Filament Admin",
@@ -5667,13 +5678,14 @@
                 "cms",
                 "filament",
                 "filament-cms-website-plugin",
-                "laravel"
+                "laravel",
+                "solutionforest"
             ],
             "support": {
                 "issues": "https://github.com/solution-forest/filament-cms-website-plugin/issues",
                 "source": "https://github.com/solution-forest/filament-cms-website-plugin"
             },
-            "time": "2023-10-24T10:25:16+00:00"
+            "time": "2023-11-10T07:17:47+00:00"
         },
         {
             "name": "solution-forest/filament-tree",
