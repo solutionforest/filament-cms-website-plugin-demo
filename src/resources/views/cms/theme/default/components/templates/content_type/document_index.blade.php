@@ -10,12 +10,9 @@
     $childs = null;
 
     if ($page) {
-        $query = \SolutionForest\FilamentCms\Support\Utils::getContentType($page->slug);
-        if (request()->has('preview')) {
-            $query = $query->preview();
-        } else {
-            $query = $query->published();
-        }
+        $query = \SolutionForest\FilamentCms\Support\Utils::getContentType($page->slug)
+            // document is avoid to be edited
+            ->published();
         $childs = $query->get();
     }
 @endphp
