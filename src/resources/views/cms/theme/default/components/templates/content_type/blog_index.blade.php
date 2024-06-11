@@ -36,10 +36,9 @@
             $perPage = 2;
             $currPage = request()->get('page') ?? 1;
             $blogs = \SolutionForest\FilamentCms\Support\Utils::getContentType('blogs')
-                ->paginate($perPage, page: $currPage)
-                ->items();
+                ->paginate($perPage, page: $currPage);
         @endphp
-        @foreach($blogs as $index => $blog)
+        @foreach($blogs->items() as $index => $blog)
 
             @php
                 $categoryTags = $blog->tags->filter(fn ($tag) => $tag->category == 'category');
