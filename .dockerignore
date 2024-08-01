@@ -1,0 +1,5 @@
+**/database.sqlite.*
+!**/database.sqlite.example
+
+web/src/storage/logs/*.log
+**/*.gitignore

@@ -38,7 +38,7 @@ return [
 
         'database' => [
             'driver' => 'local',
-            'root' => database_path(''),
+            'root' => database_path('data'),
             'throw' => false,
         ],
 
