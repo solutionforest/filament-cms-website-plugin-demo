@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel
     {
         // Schedule the database.sqlite.example file to be copied to database.sqlite every hour
         $schedule->call(function () {
-            if (Storage::disk('database')->exists('data/database.sqlite.example')) {
+            if (Storage::disk('database')->exists('database.sqlite.example')) {
                 // Copy and override the database.sqlite.example file to database.sqlite
-                Storage::disk('database')->copy('data/database.sqlite.example', 'data/database.sqlite');
+                Storage::disk('database')->copy('database.sqlite.example', 'database.sqlite');
             }
         })->hourly();
         // $schedule->call(fn () => Log::info('This is a scheduled task'))->everyMinute();
