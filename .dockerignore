@@ -1,5 +1,11 @@
 **/database.sqlite.*
 !**/database.sqlite.example
 
-web/src/storage/logs/*.log
+src/storage/logs/*.log
+src/storage/framework/cache/*
+src/storage/framework/sessions/*
+src/storage/framework/testing/*
+src/storage/framework/views/*
+src/storage/app/*
+
 **/*.gitignore
