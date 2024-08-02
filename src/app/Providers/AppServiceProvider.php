@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         if (env('APP_ENV') === 'production') {
-            \Illuminate\Support\Facades\URL::forceScheme('https');
+            \Illuminate\Support\Facades\URL::forceScheme( request()->header('X-Forwarded-Proto', 'https') );
         }
 
         \Livewire\Livewire::component('code-wrapper', \App\Http\Livewire\CodeWrapper::class);
