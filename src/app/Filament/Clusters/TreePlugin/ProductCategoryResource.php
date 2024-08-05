@@ -18,7 +18,7 @@ class ProductCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
 
-    protected static ?string $navigationGroup = 'Tree-Plugin';
+    // protected static ?string $navigationGroup = 'Tree-Plugin';
 
     protected static ?string $cluster = TreePlugin::class;
 
