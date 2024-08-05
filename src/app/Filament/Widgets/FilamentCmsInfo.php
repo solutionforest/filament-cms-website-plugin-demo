@@ -11,20 +11,30 @@ class FilamentCmsInfo extends Widget
 
     protected int | string | array $columnSpan = 'full';
 
+    public ?array $limit = null;
+
+    public bool $showDemoLink = true;
+
     public function getPluginInfos(): array
     {
-        return [
+        $data = array_map(fn ($arr) => array_merge($arr, ['version' => $this->getPluginInstallVersion($arr['packageName'])]), [
             [
                 'name' => 'Filament CMS Website Plugin',
-                'version' => $this->getPluginInstallVersion($this->getFilamentCmsPackageName()),
+                'packageName' => $this->getFilamentCmsPackageName(),
                 'url' => $this->getFilamentCmsPluginLink(),
             ],
             [
                 'name' => 'Tree',
-                'version' => $this->getPluginInstallVersion($this->getFilamentTreePackageName()),
+                'packageName' => $this->getFilamentTreePackageName(),
                 'url' => $this->getFilamentTreePluginLink(),
             ],
-        ];
+        ]);
+
+        if ($this->limit != null) {
+            $data = array_values( array_filter($data, fn ($arr) => in_array(str($arr['packageName'])->afterLast('/'), $this->limit)) );
+        }
+
+        return ($data);
     }
 
     public function getFilamentCmsPluginDocLink()

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Clusters\TreePlugin;
 
-use App\Filament\Resources\ProductCategoryResource\Pages;
+use App\Filament\Clusters\TreePlugin;
+use App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages;
 use App\Models\ProductCategory;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -19,6 +20,7 @@ class ProductCategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Tree-Plugin';
 
+    protected static ?string $cluster = TreePlugin::class;
 
     public static function form(Form $form): Form
     {

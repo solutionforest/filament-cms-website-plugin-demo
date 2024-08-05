@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\ProductCategoryResource\Pages;
+namespace App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages;
 
-use App\Filament\Resources\ProductCategoryResource;
+use App\Filament\Clusters\TreePlugin\ProductCategoryResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
