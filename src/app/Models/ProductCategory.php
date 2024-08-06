@@ -9,11 +9,11 @@ class ProductCategory extends Model
 {
     use ModelTree;
 
-    protected $fillable = ["parent_id", "title", "order"];
+    protected $guarded = ['id'];
 
     protected $table = 'product_categories';
 
-    // Default 
+    // Default
 
     // public function determineOrderColumnName(): string
     // {

@@ -28,6 +28,11 @@ class FilamentCmsInfo extends Widget
                 'packageName' => $this->getFilamentTreePackageName(),
                 'url' => $this->getFilamentTreePluginLink(),
             ],
+            [
+                'name' => 'Simple Lightbox',
+                'packageName' => 'solution-forest/filament-simplelightbox',
+                'url' => 'https://github.com/solutionforest/Filament-SimpleLightBox',
+            ],
         ]);
 
         if ($this->limit != null) {

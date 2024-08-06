@@ -28,6 +28,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use SolutionForest\FilamentCms\Filament\Resources\CmsPageBaseResource;
 use SolutionForest\FilamentCms\FilamentCmsPanel;
+use SolutionForest\FilamentSimpleLightBox\SimpleLightBoxPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -40,6 +41,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(config('filament-cms.locales')))
             ->plugin(FilamentCmsPanel::make())
             ->plugin(FilamentShieldPlugin::make())
+            ->plugin(SimpleLightBoxPlugin::make())
             ->globalSearch(false)
             ->login(Login::class)
             ->darkMode(true)
