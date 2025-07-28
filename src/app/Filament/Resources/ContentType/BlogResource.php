@@ -2,6 +2,10 @@
 
 namespace App\Filament\Resources\ContentType;
 
+use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
+use App\Filament\Resources\ContentType\BlogResource\Pages\ListBlogs;
+use App\Filament\Resources\ContentType\BlogResource\Pages\EditBlog;
+use App\Filament\Resources\ContentType\BlogResource\Pages\CreateBlog;
 use App\Filament\Resources\ContentType\BlogResource\Pages;
 use App\CmsPages\Templates\ContentType\Blog as Template;
 use Filament\Forms;
@@ -11,7 +15,7 @@ use SolutionForest\FilamentCms\Filament\Resources\ContentTypePageBaseResource as
 
 class BlogResource extends BaseResource
 {
-    use \Filament\Resources\Concerns\Translatable;
+    use Translatable;
 
     protected static ?int $navigationSort = null;
 
@@ -27,9 +31,9 @@ class BlogResource extends BaseResource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBlogs::route('/'),
-            'edit' => Pages\EditBlog::route('/{record:id}/edit'),
-            'create' => Pages\CreateBlog::route('/create'),
+            'index' => ListBlogs::route('/'),
+            'edit' => EditBlog::route('/{record:id}/edit'),
+            'create' => CreateBlog::route('/create'),
         ];
     }
 

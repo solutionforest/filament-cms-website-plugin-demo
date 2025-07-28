@@ -2,19 +2,22 @@
 
 namespace App\Filament\Resources\ContentType\BlogResource\Pages;
 
-use Filament\Resources\Pages\EditRecord;
-use SolutionForest\FilamentCms\Concern;
+use SolutionForest\FilamentCms\Concern\CanPublishPage;
+use SolutionForest\FilamentCms\Concern\CanPreviewPage;
 use App\Filament\Resources\ContentType\BlogResource;
-use Filament\Actions\LocaleSwitcher;
+use Filament\Resources\Pages\EditRecord;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Resources\Pages\EditRecord\Concerns\Translatable;
+use SolutionForest\FilamentCms\Concern;
 
 class EditBlog extends EditRecord
 {
-    use EditRecord\Concerns\Translatable {
-        // EditRecord\Concerns\Translatable::getActions as protected translatableActions;
+    use Translatable {
+        // Translatable::getActions as protected translatableActions;
     }
-    use Concern\CanPublishPage;    
-    use Concern\CanPreviewPage {
-        Concern\CanPreviewPage::getActions as protected previewPageActions;
+    use CanPublishPage;    
+    use CanPreviewPage {
+        CanPreviewPage::getActions as protected previewPageActions;
     }
 
     protected static string $resource = BlogResource::class;

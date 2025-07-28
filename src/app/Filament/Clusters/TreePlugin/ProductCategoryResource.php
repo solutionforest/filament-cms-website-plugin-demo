@@ -2,11 +2,16 @@
 
 namespace App\Filament\Clusters\TreePlugin;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages\ListProductCategories;
+use App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages\CreateProductCategory;
+use App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages\EditProductCategory;
 use App\Filament\Clusters\TreePlugin;
 use App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages;
 use App\Models\ProductCategory;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -16,16 +21,16 @@ class ProductCategoryResource extends Resource
 {
     protected static ?string $model = ProductCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-folder';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-folder';
 
     // protected static ?string $navigationGroup = 'Tree-Plugin';
 
     protected static ?string $cluster = TreePlugin::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('title')
             ]);
     }
@@ -43,11 +48,11 @@ class ProductCategoryResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -61,9 +66,9 @@ class ProductCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProductCategories::route('/'),
-            'create' => Pages\CreateProductCategory::route('/create'),
-            'edit' => Pages\EditProductCategory::route('/{record}/edit'),
+            'index' => ListProductCategories::route('/'),
+            'create' => CreateProductCategory::route('/create'),
+            'edit' => EditProductCategory::route('/{record}/edit'),
         ];
     }
 }

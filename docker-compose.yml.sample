@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+      args:
+        # UID and GID must be set as environment variables on the host machine
+        USER_ID: $UID
+        GROUP_ID: $GID
+    ports:
+      - "3334:8080"
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - SSL_MODE=off
+      - APP_URL=http://localhost:3334
+    networks:
+      - front
+      - back
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge

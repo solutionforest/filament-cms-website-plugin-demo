@@ -2,14 +2,24 @@
 
 namespace App\Filament\Clusters\SimpleLightBoxPlugin\Resources;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ColumnGroup;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\Pages\ManageProductCategories;
 use App\Filament\Clusters\SimpleLightBoxPlugin;
 use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\Pages;
 use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\RelationManagers;
 use App\Models\ProductCategory;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Schema\Schema;
 use Filament\Tables;
@@ -22,42 +32,42 @@ class ProductCategoryResource extends Resource
 {
     protected static ?string $model = ProductCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $cluster = SimpleLightBoxPlugin::class;
 
-    public static function form(Form $form): Form
+    public static function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')->required(),
-                Forms\Components\TextInput::make('resource')->url(),
+        return $schema
+            ->components([
+                TextInput::make('title')->required(),
+                TextInput::make('resource')->url(),
             ]);
     }
 
-    public static function infolist(Infolist $infolist): InfoList
+    public static function infolist(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $infolist
-            ->schema([
-                Infolists\Components\TextEntry::make('id'),
-                Infolists\Components\TextEntry::make('title'),
+        return $schema
+            ->components([
+                TextEntry::make('id'),
+                TextEntry::make('title'),
 
-                Infolists\Components\TextEntry::make('resource')
+                TextEntry::make('resource')
                     ->simpleLightbox(fn ($record) => $record->resource),
 
-                Infolists\Components\Section::make('PDF')
+                Section::make('PDF')
                     ->aside()
                     ->columnSpanFull()
                     ->schema([
-                        Infolists\Components\TextEntry::make('pdf')
+                        TextEntry::make('pdf')
                             ->label('PDF (defaultDisplayUrl as false and default value as "No PDF")')
                             ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: false)
                             ->default(fn ($record) => $record->id % 2 == 0 ? 'View PDF' : 'No PDF'),
-                        Infolists\Components\TextEntry::make('pdf_2')
+                        TextEntry::make('pdf_2')
                             ->label('PDF (defaultDisplayUrl as true) demo')
                             ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: true),
                     ]),
-                Infolists\Components\ImageEntry::make('image')
+                ImageEntry::make('image')
                     ->simpleLightbox(fn ($record) => $record->id % 2 == 0  ? 'https://dummyimage.com/400x400/4144e0/fcfcfc' : 'https://dummyimage.com/400x400/000/fff.png', defaultDisplayUrl: true),
             ]);
     }
@@ -66,34 +76,34 @@ class ProductCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('resource')
+                TextColumn::make('id'),
+                TextColumn::make('title'),
+                TextColumn::make('resource')
                     ->simpleLightbox(),
-                Tables\Columns\ColumnGroup::make('PDF', [
-                    Tables\Columns\TextColumn::make('pdf')
+                ColumnGroup::make('PDF', [
+                    TextColumn::make('pdf')
                         ->alignCenter()
                         ->label('PDF (defaultDisplayUrl as false and default value as "No PDF")')
                         ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: false)
                         ->default(fn ($record) => $record->id % 2 == 0 ? 'View PDF' : 'No PDF'),
-                    Tables\Columns\TextColumn::make('pdf_2')
+                    TextColumn::make('pdf_2')
                         ->alignCenter()
                         ->label('PDF (defaultDisplayUrl as true) demo')
                         ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: true),
                 ])->alignCenter(),
-                Tables\Columns\ImageColumn::make('image')
+                ImageColumn::make('image')
                     ->simpleLightbox(fn ($record) => $record->id % 2 == 0  ? 'https://dummyimage.com/400x400/4144e0/fcfcfc' : 'https://dummyimage.com/400x400/000/fff.png', defaultDisplayUrl: true),
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -108,7 +118,7 @@ class ProductCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageProductCategories::route('/'),
+            'index' => ManageProductCategories::route('/'),
         ];
     }
 }

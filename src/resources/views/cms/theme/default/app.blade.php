@@ -13,9 +13,9 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
 
-    @if ($seo)
+    @isset($seo)
         {!! seo($seo) !!}
-    @endif
+    @endisset
     @stack('beforeCoreStyles')
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

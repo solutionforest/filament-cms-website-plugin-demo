@@ -2,8 +2,10 @@
 
 namespace App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\Pages;
 
+use Filament\Actions\CreateAction;
+use Filament\Support\Enums\Width;
+use App\Filament\Widgets\FilamentCmsInfo;
 use Filament\Actions;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Resources\Pages\ManageRecords;
 use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource;
 
@@ -14,19 +16,19 @@ class ManageProductCategories extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 
-    public function getMaxContentWidth(): MaxWidth
+    public function getMaxContentWidth(): Width
     {
-        return MaxWidth::Full;
+        return Width::Full;
     }
 
     protected function getHeaderWidgets(): array
     {
         return [
-            \App\Filament\Widgets\FilamentCmsInfo::make(['limit' => ['filament-simplelightbox'], 'showDemoLink' => false]),
+            FilamentCmsInfo::make(['limit' => ['filament-simplelightbox'], 'showDemoLink' => false]),
         ];
     }
 }

@@ -6,13 +6,18 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.5.6",
-        "@tailwindcss/typography": "^0.5.10",
-        "autoprefixer": "^10.4.16",
-        "axios": "^1.1.2",
-        "laravel-vite-plugin": "^0.7.5",
-        "postcss": "^8.4.31",
-        "tailwindcss": "^3.3.3",
-        "vite": "^4.0.0"
+        "@tailwindcss/forms": "^0.5.10",
+        "@tailwindcss/postcss": "^4.1.4",
+        "@tailwindcss/typography": "^0.5.16",
+        "@tailwindcss/vite": "^4.0.0",
+        "axios": "^1.7.4",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.5.4",
+        "postcss-import": "^16.1.0",
+        "tailwindcss": "^4.1.8",
+        "vite": "^5.0"
+    },
+    "dependencies": {
+        "autoprefixer": "^10.4.21"
     }
 }

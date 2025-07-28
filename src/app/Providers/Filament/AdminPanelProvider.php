@@ -3,30 +3,24 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
+use App\Filament\Pages\Auth\ViewProfile;
 use App\Filament\Resources\Shield\RoleResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
-use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\MenuItem;
-use Filament\Pages;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\SpatieLaravelTranslatablePlugin;
-use Filament\Support\Colors\Color;
-use Filament\Widgets;
+use Filament\Widgets\AccountWidget;
+use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use SolutionForest\FilamentCms\Filament\Resources\CmsPageBaseResource;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use SolutionForest\FilamentCms\FilamentCmsPanel;
 use SolutionForest\FilamentSimpleLightBox\SimpleLightBoxPlugin;
 
@@ -38,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(config('filament-cms.locales')))
+            ->plugin(SpatieTranslatablePlugin::make()->defaultLocales(config('filament-cms.locales')))
             ->plugin(FilamentCmsPanel::make())
             ->plugin(FilamentShieldPlugin::make())
             ->plugin(SimpleLightBoxPlugin::make())
@@ -49,14 +43,14 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#007C90',
             ])
-            ->profile(\App\Filament\Pages\Auth\ViewProfile::class)
+            ->profile(ViewProfile::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                AccountWidget::class,
+                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -71,35 +65,28 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/admin/theme.css');
 
-        $this->renderHook($panel);
+        $this->renderHooks($panel);
 
         return $panel;
     }
 
-    private function renderHook(Panel $panel)
+    private function renderHooks(Panel $panel)
     {
         $panel->renderHook(
             'panels::page.start',
-            fn () => view('shout::components.shout', [
-                'slot' => 'The database will reset every hour.',
-                'color' => 'warning',
-                'icon' => 'heroicon-o-exclamation-triangle',
-                'extraAttributes' => [
-                    'class' => 'mt-6',
-                ],
+            fn () => view('alert', [
+                'message' => 'The database will reset every hour.',
+                'type' => 'warning',
             ])
         );
         $panel->renderHook(
             'panels::page.start',
-            fn () => view('shout::components.shout', [
-                'slot' => 'Some fields are disabled for guest users.',
-                'color' => 'info',
-                'icon' => 'heroicon-o-information-circle',
-                'extraAttributes' => [
-                    'class' => 'mt-6',
-                ],
+            fn () => view('alert', [
+                'message' => 'Some fields are disabled for guest users.',
+                'type' => 'info',
             ]),
             [RoleResource::class],
         );

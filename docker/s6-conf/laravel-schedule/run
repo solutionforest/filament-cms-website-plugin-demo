@@ -1,3 +1,2 @@
-#!/command/execlineb -P
-
-/etc/s6-overlay/scripts/laravel-schedule
+#!/bin/bash
+/etc/s6-overlay/scripts/laravel-schedule.sh

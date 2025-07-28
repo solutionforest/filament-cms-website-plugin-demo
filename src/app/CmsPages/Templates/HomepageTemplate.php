@@ -2,12 +2,13 @@
 
 namespace App\CmsPages\Templates;
 
+use Filament\Schemas\Components\Section;
+use Filament\Actions\Action;
 use Filament\Forms;
 use SolutionForest\FilamentCms\CmsPages\Contracts\CmsPageTemplate;
 use SolutionForest\FilamentCms\CmsPages\Renderer\AtomicDesignPageRenderer;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\MarkdownEditor;
 
 final class HomepageTemplate implements CmsPageTemplate
@@ -22,11 +23,11 @@ final class HomepageTemplate implements CmsPageTemplate
     public static function schema(): array
     {
         return [
-            Forms\Components\Card::make()
+            Section::make()
                 ->schema([
-                    Forms\Components\TextInput::make('title1')->label("Title"),
-                    Forms\Components\TextInput::make('subtitle')->label("Sub Title"),
-                    Forms\Components\TextInput::make('button_text')->label("Button Text"),
+                    TextInput::make('title1')->label("Title"),
+                    TextInput::make('subtitle')->label("Sub Title"),
+                    TextInput::make('button_text')->label("Button Text"),
                     TextInput::make('button_link')
                         ->suffixAction(fn (?string $state): Action =>
                             Action::make('visit')
@@ -38,7 +39,7 @@ final class HomepageTemplate implements CmsPageTemplate
                         ),
                     RichEditor::make('my_story')->label("My Story")
                     ])->label("Section 1"),
-                    Forms\Components\Card::make()
+                    Section::make()
                     ->schema([
                         
                     ]),

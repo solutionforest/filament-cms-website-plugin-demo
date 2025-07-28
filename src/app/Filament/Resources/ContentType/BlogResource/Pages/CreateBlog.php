@@ -2,15 +2,17 @@
 
 namespace App\Filament\Resources\ContentType\BlogResource\Pages;
 
-use Filament\Resources\Pages\CreateRecord;
-use SolutionForest\FilamentCms\Concern;
+use SolutionForest\FilamentCms\Concern\CanPublishPage;
 use App\Filament\Resources\ContentType\BlogResource;
-use Filament\Actions\LocaleSwitcher;
+use Filament\Resources\Pages\CreateRecord;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Resources\Pages\CreateRecord\Concerns\Translatable;
+use SolutionForest\FilamentCms\Concern;
 
 class CreateBlog extends CreateRecord
 {
-    use CreateRecord\Concerns\Translatable;
-    use Concern\CanPublishPage;
+    use Translatable;
+    use CanPublishPage;
 
     protected static string $resource = BlogResource::class;
 

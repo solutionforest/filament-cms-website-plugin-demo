@@ -2,14 +2,16 @@
 
 namespace App\Filament\Resources\DataType\LinkResource\Pages;
 
+use SolutionForest\FilamentCms\Concern\CanPublishPage;
 use Filament\Resources\Pages\CreateRecord;
 use SolutionForest\FilamentCms\Concern;
 use App\Filament\Resources\DataType\LinkResource;
+use LaraZeus\SpatieTranslatable\Resources\Pages\CreateRecord\Concerns\Translatable;
 
 class CreateLink extends CreateRecord
 {
-    use CreateRecord\Concerns\Translatable;
-    use Concern\CanPublishPage;
+    use Translatable;
+    use CanPublishPage;
 
     protected static string $resource = LinkResource::class;
 

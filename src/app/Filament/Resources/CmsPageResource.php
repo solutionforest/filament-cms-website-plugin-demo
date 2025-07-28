@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CmsPageResource\Pages\ListCmsPages;
+use App\Filament\Resources\CmsPageResource\Pages\CreateCmsPage;
+use App\Filament\Resources\CmsPageResource\Pages\EditCmsPage;
 use App\Filament\Resources\CmsPageResource\Pages;
 use App\Models\CmsPage;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Support\Utils;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Tables\Table;
+use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
 use SolutionForest\FilamentCms\Filament\Resources\CmsPageResource as BaseResource;
 
 class CmsPageResource extends BaseResource implements 
@@ -32,9 +35,9 @@ class CmsPageResource extends BaseResource implements
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCmsPages::route('/'),
-            'create' => Pages\CreateCmsPage::route('/create'),
-            'edit' => Pages\EditCmsPage::route('/{record}/edit'),
+            'index' => ListCmsPages::route('/'),
+            'create' => CreateCmsPage::route('/create'),
+            'edit' => EditCmsPage::route('/{record}/edit'),
         ];
     }    
 

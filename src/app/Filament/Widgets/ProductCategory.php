@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductCategory as ModelsProductCategory;
 use App\Filament\Widgets;
 use Filament\Facades\Filament;
@@ -39,7 +40,7 @@ class ProductCategory extends BaseWidget
         return true;
     }
 
-    public function getTreeRecordIcon(?\Illuminate\Database\Eloquent\Model $record = null): ?string
+    public function getTreeRecordIcon(?Model $record = null): ?string
     {
         // default null
         if ($record?->getKey() == 1) {

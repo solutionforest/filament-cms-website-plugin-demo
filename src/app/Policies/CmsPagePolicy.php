@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use SolutionForest\FilamentCms\Filament\Resources\ContentTypePageBaseResource;
+use SolutionForest\FilamentCms\Filament\Resources\DataTypePageBaseResource;
 use App\Filament\Resources\Shield\RoleResource;
 use App\Models\User;
 use App\Models\CmsPage;
@@ -18,8 +20,8 @@ class CmsPagePolicy
     {
         if ($resourceClass) {
             return ! (
-                is_subclass_of($resourceClass, \SolutionForest\FilamentCms\Filament\Resources\ContentTypePageBaseResource::class)
-                || is_subclass_of($resourceClass, \SolutionForest\FilamentCms\Filament\Resources\DataTypePageBaseResource::class)
+                is_subclass_of($resourceClass, ContentTypePageBaseResource::class)
+                || is_subclass_of($resourceClass, DataTypePageBaseResource::class)
             );
         }
 
@@ -55,7 +57,7 @@ class CmsPagePolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @param ?string $resourceClass
      * @return bool
      */
@@ -70,8 +72,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CmsPage  $cmsPage
+     * @param User $user
+     * @param CmsPage $cmsPage
      * @param ?string $resourceClass
      * @return bool
      */
@@ -86,7 +88,7 @@ class CmsPagePolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @param ?string $resourceClass
      * @return bool
      */
@@ -101,8 +103,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CmsPage  $cmsPage
+     * @param User $user
+     * @param CmsPage $cmsPage
      * @param ?string $resourceClass
      * @return bool
      */
@@ -121,8 +123,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CmsPage  $cmsPage
+     * @param User $user
+     * @param CmsPage $cmsPage
      * @param ?string $resourceClass
      * @return bool
      */
@@ -141,7 +143,7 @@ class CmsPagePolicy
     /**
      * Determine whether the user can bulk delete.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @param ?string $resourceClass
      * @return bool
      */
@@ -156,8 +158,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can permanently delete.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CmsPage  $cmsPage
+     * @param User $user
+     * @param CmsPage $cmsPage
      * @param ?string $resourceClass
      * @return bool
      */
@@ -172,7 +174,7 @@ class CmsPagePolicy
     /**
      * Determine whether the user can permanently bulk delete.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @param ?string $resourceClass
      * @return bool
      */
@@ -187,8 +189,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can restore.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CmsPage  $cmsPage
+     * @param User $user
+     * @param CmsPage $cmsPage
      * @param ?string $resourceClass
      * @return bool
      */
@@ -203,7 +205,7 @@ class CmsPagePolicy
     /**
      * Determine whether the user can bulk restore.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @param ?string $resourceClass
      * @return bool
      */
@@ -218,8 +220,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can replicate.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CmsPage  $cmsPage
+     * @param User $user
+     * @param CmsPage $cmsPage
      * @param ?string $resourceClass
      * @return bool
      */
@@ -234,7 +236,7 @@ class CmsPagePolicy
     /**
      * Determine whether the user can reorder.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @param ?string $resourceClass
      * @return bool
      */
@@ -249,8 +251,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can publish.
      *
-     * @param  \App\Models\User  $user
-     * @param  null|\App\Models\CmsPage $cmsPage
+     * @param User $user
+     * @param null|CmsPage $cmsPage
      * @param null|string $resourceClass
      * @return bool
      */
@@ -266,8 +268,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can unpublish.
      *
-     * @param  \App\Models\User  $user
-     * @param  null|\App\Models\CmsPage $cmsPage
+     * @param User $user
+     * @param null|CmsPage $cmsPage
      * @param null|string $resourceClass
      * @return bool
      */
@@ -283,8 +285,8 @@ class CmsPagePolicy
     /**
      * Determine whether the user can schedule publish.
      *
-     * @param  \App\Models\User  $user
-     * @param  null|\App\Models\CmsPage $cmsPage
+     * @param User $user
+     * @param null|CmsPage $cmsPage
      * @param null|string $resourceClass
      * @return bool
      */

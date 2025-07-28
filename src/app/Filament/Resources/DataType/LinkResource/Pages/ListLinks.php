@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources\DataType\LinkResource\Pages;
 
-use Filament\Actions\LocaleSwitcher;
-use Filament\Resources\Pages\ListRecords;
-use SolutionForest\FilamentCms\Concern;
-use SolutionForest\FilamentCms\Support\Utils;
 use App\Filament\Resources\DataType\LinkResource;
 use Filament\Actions\CreateAction;
+use Filament\Resources\Pages\ListRecords;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
+use SolutionForest\FilamentCms\Concern;
+use SolutionForest\FilamentCms\Support\Utils;
 
 class ListLinks extends ListRecords
 {
-    use ListRecords\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = LinkResource::class;
 

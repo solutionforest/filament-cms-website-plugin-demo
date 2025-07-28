@@ -2,9 +2,16 @@
 
 namespace App\Filament\Clusters\TreePlugin\Pages;
 
+use SolutionForest\FilamentTree\Actions\EditAction;
+use SolutionForest\FilamentTree\Actions\ViewAction;
+use SolutionForest\FilamentTree\Actions\DeleteAction;
+use App\Filament\Widgets\FilamentCmsInfo;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\Group;
 use App\Filament\Clusters\TreePlugin;
 use App\Models\CmsPageNavigation as TreePageModel;
-use Filament\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
 use Filament\Forms;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +27,7 @@ class MainMenuNavigation extends BasePage
 {
     use Translatable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bars-3-center-left';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bars-3-center-left';
 
     protected static ?string $cluster = TreePlugin::class;
 
@@ -41,16 +48,16 @@ class MainMenuNavigation extends BasePage
     protected function getTreeActions(): array
     {
         return [
-            \SolutionForest\FilamentTree\Actions\EditAction::make(),
-            \SolutionForest\FilamentTree\Actions\ViewAction::make(),
-            \SolutionForest\FilamentTree\Actions\DeleteAction::make(),
+            EditAction::make(),
+            ViewAction::make(),
+            DeleteAction::make(),
         ];
     }
 
     protected function getHeaderWidgets(): array
     {
         return [
-            \App\Filament\Widgets\FilamentCmsInfo::make(['limit' => ['filament-tree'], 'showDemoLink' => false]),
+            FilamentCmsInfo::make(['limit' => ['filament-tree'], 'showDemoLink' => false]),
         ];
     }
 
@@ -85,10 +92,10 @@ class MainMenuNavigation extends BasePage
     protected function getFormSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('title')->required(),
-            Forms\Components\TextInput::make('category_id')->default(static::mainCategoryId())->readOnly()->required(),
+            TextInput::make('title')->required(),
+            TextInput::make('category_id')->default(static::mainCategoryId())->readOnly()->required(),
 
-            Forms\Components\Select::make('parent_id')
+            Select::make('parent_id')
                 ->label(__('filament-cms::filament-cms.fields.cms_page_navigation.parent'))
                 ->options(function ($get, ?Model $record) {
                     $options = static::getParentOptions(static::mainCategoryId());
@@ -100,7 +107,7 @@ class MainMenuNavigation extends BasePage
                 ->default(FilamentTreeHelper::defaultParentId())
                 ->required(),
 
-            Forms\Components\Select::make('type')
+            Select::make('type')
                 ->label(__('filament-cms::filament-cms.fields.cms_page_navigation.type'))
                 ->reactive()
                 ->dehydrated(fn ($context) => $context != 'create')
@@ -116,20 +123,20 @@ class MainMenuNavigation extends BasePage
                 })
                 ->options(static::getNavigationTypeOptions()),
 
-            Forms\Components\Group::make([
-                Forms\Components\Select::make('page_id')
+            Group::make([
+                Select::make('page_id')
                     ->label(__('filament-cms::filament-cms.fields.cms_page_navigation.page'))
                     ->searchable()
                     ->options(static::getPageOptions())
                     ->visible(fn ($get) => static::typeIsPage($get))
                     ->required(fn ($get) => static::typeIsPage($get)),
 
-                Forms\Components\TextInput::make('url')
+                TextInput::make('url')
                     ->label(__('filament-cms::filament-cms.fields.cms_page_navigation.url'))
                     ->visible(fn ($get) => static::typeIsExternal($get))
                     ->required(fn ($get) => static::typeIsExternal($get)),
 
-                Forms\Components\Select::make('target')
+                Select::make('target')
                     ->label(__('filament-cms::filament-cms.fields.cms_page_navigation.target'))
                     ->options(static::getUrlTargetOptions()),
 

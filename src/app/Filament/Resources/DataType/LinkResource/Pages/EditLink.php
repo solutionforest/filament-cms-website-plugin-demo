@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources\DataType\LinkResource\Pages;
 
-use Filament\Resources\Pages\EditRecord;
-use SolutionForest\FilamentCms\Concern;
+use SolutionForest\FilamentCms\Concern\CanPublishPage;
 use App\Filament\Resources\DataType\LinkResource;
+use Filament\Resources\Pages\EditRecord;
+use LaraZeus\SpatieTranslatable\Resources\Pages\EditRecord\Concerns\Translatable;
+use SolutionForest\FilamentCms\Concern;
 
 class EditLink extends EditRecord
 {
-    use EditRecord\Concerns\Translatable {
-    //     EditRecord\Concerns\Translatable::getActions as protected translatableActions;
+    use Translatable {
+    //     Translatable::getActions as protected translatableActions;
     }
-    use Concern\CanPublishPage;
+    use CanPublishPage;
 
     protected static string $resource = LinkResource::class;
 

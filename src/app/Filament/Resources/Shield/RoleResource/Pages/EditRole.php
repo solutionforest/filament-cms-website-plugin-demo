@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Shield\RoleResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\Shield\RoleResource;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Actions;
@@ -18,7 +19,7 @@ class EditRole extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 

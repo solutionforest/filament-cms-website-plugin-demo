@@ -7,7 +7,7 @@ use App\Filament\Resources\Shield\RoleResource;
 use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
-use Filament\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Str;

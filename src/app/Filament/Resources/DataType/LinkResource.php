@@ -2,6 +2,10 @@
 
 namespace App\Filament\Resources\DataType;
 
+use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
+use App\Filament\Resources\DataType\LinkResource\Pages\ListLinks;
+use App\Filament\Resources\DataType\LinkResource\Pages\EditLink;
+use App\Filament\Resources\DataType\LinkResource\Pages\CreateLink;
 use App\Filament\Resources\DataType\LinkResource\Pages;
 use App\CmsPages\Templates\DataType\Link as Template;
 use Filament\Forms;
@@ -11,7 +15,7 @@ use SolutionForest\FilamentCms\Filament\Resources\DataTypePageBaseResource as Ba
 
 class LinkResource extends BaseResource
 {
-    use \Filament\Resources\Concerns\Translatable;
+    use Translatable;
 
     protected static ?int $navigationSort = null;
 
@@ -27,9 +31,9 @@ class LinkResource extends BaseResource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLinks::route('/'),
-            'edit' => Pages\EditLink::route('/{record:id}/edit'),
-            'create' => Pages\CreateLink::route('/create'),
+            'index' => ListLinks::route('/'),
+            'edit' => EditLink::route('/{record:id}/edit'),
+            'create' => CreateLink::route('/create'),
         ];
     }
 

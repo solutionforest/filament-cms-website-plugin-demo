@@ -2,6 +2,19 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
+use App\Filament\Resources\UserResource\Pages\CreateUser;
+use App\Filament\Resources\UserResource\Pages\ViewUser;
+use App\Filament\Resources\UserResource\Pages\EditUser;
+use Filament\Schemas\Components\Component;
+use Filament\Schemas\Components\Group;
+use Filament\Forms\Components\Select;
 use App\Filament\Resources\Shield\RoleResource;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
@@ -11,7 +24,6 @@ use BezhanSalleh\FilamentShield\Support\Utils as SupportUtils;
 use Closure;
 use Filament\Facades\Filament;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,17 +39,17 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-users';
 
     protected static ?string $navigationLabel = 'User Management';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Card::make([
-                    Forms\Components\TextInput::make('name')->required(),
-                    Forms\Components\TextInput::make('email')->unique(ignoreRecord: true)->required(),
+        return $schema
+            ->components([
+                Section::make([
+                    TextInput::make('name')->required(),
+                    TextInput::make('email')->unique(ignoreRecord: true)->required(),
                     static::getPasswordField(),
                 ])->columnSpanFull()->columns(['default' => 1]),
 
@@ -49,18 +61,18 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
+                TextColumn::make('name'),
+                TextColumn::make('email'),
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 // Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    DeleteBulkAction::make(),
                 // ]),
             ])
             ->checkIfRecordIsSelectableUsing(fn (User $record) => static::canDelete($record));
@@ -69,16 +81,16 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'view' => Pages\ViewUser::route('/{record}'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'view' => ViewUser::route('/{record}'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 
-    public static function getPasswordField(): Forms\Components\Component
+    public static function getPasswordField(): Component
     {
-        return Forms\Components\Group::make()
+        return Group::make()
         ->hiddenOn('view')
         ->columns(2)
         ->schema([
@@ -89,24 +101,24 @@ class UserResource extends Resource
     public static function getPasswordSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('password')
+            TextInput::make('password')
                 ->password()
                 ->confirmed()
                 ->dehydrateStateUsing(fn ($state) => ! empty($state) ? Hash::make($state) : '')
                 ->required(),
-            Forms\Components\TextInput::make('password_confirmation')
+            TextInput::make('password_confirmation')
                 ->password()
                 ->required(),
         ];
     }
 
-    public static function getRoleGroupField(): Forms\Components\Component
+    public static function getRoleGroupField(): Component
     {
-        return Forms\Components\Group::make([
-            Forms\Components\Card::make()
+        return Group::make([
+            Section::make()
                 ->hidden(fn (?User $record) => $record && $record->isSuperAdmin() && ! (Filament::auth()->user()?->isSuperAdmin() ?? false))
                 ->schema([
-                    Forms\Components\Select::make('roles')
+                    Select::make('roles')
                         ->multiple()
                         ->relationship(
                             'roles', 

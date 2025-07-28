@@ -2,6 +2,9 @@
 
 namespace App\Filament\Pages\Auth;
 
+use Filament\Pages\Concerns\HasRoutes;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Facades\Filament\Schemas\Schema;
 use Exception;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -9,7 +12,6 @@ use Filament\Facades\Filament;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\EditProfile as BasePage;
 use Filament\Pages\Concerns;
@@ -28,14 +30,14 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 /**
- * @property Infolist $infolist
+ * @property Schema $infolist
  */
 class ViewProfile  extends SimplePage// extends BasePage
 {
-    use Concerns\HasRoutes;
+    use HasRoutes;
     // use Concerns\InteractsWithFormActions;
     
-    protected static string $view = 'filament.pages.auth.view-profile';
+    protected string $view = 'filament.pages.auth.view-profile';
 
     protected static ?string $title = 'Profile';
 
@@ -114,9 +116,9 @@ class ViewProfile  extends SimplePage// extends BasePage
     public function getInfolistSchema(): array
     {
         return [
-            Infolists\Components\TextEntry::make('name'),
-            Infolists\Components\TextEntry::make('email'),
-            Infolists\Components\TextEntry::make('roles.name')
+            TextEntry::make('name'),
+            TextEntry::make('email'),
+            TextEntry::make('roles.name')
                 ->badge()
                 ->formatStateUsing(fn ($state) => $state ? Str::headline($state) : ''),
         ];

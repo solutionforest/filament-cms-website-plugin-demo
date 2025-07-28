@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
             }
             return null;
         });
-        
+
         // Gate::define('audit', fn () => false);
         // Gate::define('rollbackAudit', fn () => false);
     }

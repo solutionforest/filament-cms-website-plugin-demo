@@ -7,7 +7,7 @@ use Filament\Widgets\Widget;
 
 class FilamentCmsInfo extends Widget
 {
-    protected static string $view = 'filament.widgets.filament-cms-info';
+    protected string $view = 'filament.widgets.filament-cms-info';
 
     protected int | string | array $columnSpan = 'full';
 

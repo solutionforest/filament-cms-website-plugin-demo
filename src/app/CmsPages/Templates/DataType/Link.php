@@ -12,8 +12,8 @@ class Link extends BaseTemplate implements CmsPageTemplate
     public static function schema(): array
     {
         return [
-        Forms\Components\TextInput::make('url')->label("url"),
-        Forms\Components\TextInput::make('description')->label("description"),
+        TextInput::make('url')->label("url"),
+        TextInput::make('description')->label("description"),
         ];
     }
 
