@@ -172,6 +172,7 @@ class DocumentController extends Controller
         return match ($slug) {
             'filament-cms-website-plugin' => 'Filament CMS',
             'filament-tree' => 'Filament Tree',
+            'filament-tab-plugin' => 'Filament Tab Plugin',
             default => "Document: {$slug}",
         };
     }
@@ -181,6 +182,7 @@ class DocumentController extends Controller
         $versions = match ($document) {
             'filament-cms-website-plugin' => ['2.x', '3.x'],
             'filament-tree' => ['2.x', '3.x'],
+            'filament-tab-plugin' => ['2.x', '3.x'],
             default => [],
         };
         return collect($versions)->mapWithKeys(fn ($version) => [
@@ -196,6 +198,7 @@ class DocumentController extends Controller
         return [
             'filament-cms-website-plugin',
             'filament-tree',
+            'filament-tab-plugin',
         ];
     }
 

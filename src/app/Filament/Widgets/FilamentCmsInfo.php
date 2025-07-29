@@ -33,6 +33,11 @@ class FilamentCmsInfo extends Widget
                 'packageName' => 'solution-forest/filament-simplelightbox',
                 'url' => 'https://github.com/solutionforest/Filament-SimpleLightBox',
             ],
+            [
+                'name' => 'Filament Tab Plugin',
+                'packageName' => 'solution-forest/tab-layout-plugin',
+                'url' => 'https://github.com/solutionforest/tab-layout-plugin',
+            ]
         ]);
 
         if ($this->limit != null) {

@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.9",
         "solution-forest/filament-cms-website-plugin": "^3.0.0",
         "solution-forest/filament-simplelightbox": "^1.0",
+        "solution-forest/tab-layout-plugin": "^3.0@beta",
         "tapp/filament-auditing": "^4.0.0"
     },
     "require-dev": {
