@@ -53,7 +53,7 @@
                                 />
                             </svg>
                         </x-slot>
-                        Demo GitHub
+                        Demo Source Code
                     </x-filament::link>
                 </div>
             @endif
