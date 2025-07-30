@@ -12,6 +12,7 @@ use App\Filament\Clusters\SimpleContactFormPlugin\SimpleContactFormPluginCluster
 use BackedEnum;
 use ContactForm;
 use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -29,10 +30,14 @@ class ContactFormResource extends ContactFormsContactFormResource
         return parent::table($table)
             ->actions([
                 EditAction::make(),
-                Action::make('preview')
-                    ->icon(Heroicon::Ticket)
-                    ->color('info')
-                    ->url(fn ($record) => static::getUrl('preview', ['record' => $record]))
+                ActionGroup::make([
+                    Action::make('viewOnBackend')
+                        ->color('info')
+                        ->url(fn ($record) => static::getUrl('preview', ['record' => $record])),
+                    Action::make('viewOnFrontend')
+                        ->color('gray')
+                        ->url(fn ($record) => route('contact-form.display', ['key' => $record->id]), true)
+                ])->label('View')->link()->color('gray')->iconPosition('after'),
             ]);
     }
 
