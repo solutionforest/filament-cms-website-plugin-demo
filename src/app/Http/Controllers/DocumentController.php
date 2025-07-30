@@ -101,7 +101,6 @@ class DocumentController extends Controller
                 return response()->json(['content' => $this->renderMarkdownToHtml($markdownContent)]);
             }   
         } catch (Throwable $th) {
-            dd($th);
             return response()->json(['error' => 'An error occurred'], 500);
         }
         return response()->json(['error' => 'Document not found'], 404);
