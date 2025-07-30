@@ -37,6 +37,11 @@ class FilamentCmsInfo extends Widget
                 'name' => 'Filament Tab Plugin',
                 'packageName' => 'solution-forest/tab-layout-plugin',
                 'url' => 'https://github.com/solutionforest/filament-tab-plugin',
+            ],
+            [
+                'name' => 'Simple Contact Form Plugin',
+                'packageName' => 'solution-forest/simple-contact-form',
+                'url' => 'https://github.com/solutionforest/simple-contact-form',
             ]
         ]);
 

@@ -23,6 +23,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use SolutionForest\FilamentCms\FilamentCmsPlugin;
 use SolutionForest\FilamentSimpleLightBox\SimpleLightBoxPlugin;
+use SolutionForest\SimpleContactForm\SimpleContactFormPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -36,6 +37,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(FilamentCmsPlugin::make())
             ->plugin(FilamentShieldPlugin::make())
             ->plugin(SimpleLightBoxPlugin::make())
+            ->plugin(SimpleContactFormPlugin::make())
             ->globalSearch(false)
             ->login(Login::class)
             ->darkMode(true)

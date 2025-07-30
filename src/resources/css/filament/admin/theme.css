@@ -3,3 +3,5 @@
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 @source '../../../../resources/views/alert.blade.php';
+
+@source '../../../../vendor/solution-forest/simple-contact-form/resources/views/**/*.blade.php';

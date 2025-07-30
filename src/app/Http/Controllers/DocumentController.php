@@ -173,6 +173,7 @@ class DocumentController extends Controller
             'filament-tree' => 'Filament Tree',
             'filament-tab-plugin' => 'Filament Tab Plugin',
             'Filament-SimpleLightBox' => 'Filament Simple Lightbox',
+            'simple-contact-form' => 'Simple Contact Form Plugin',
             default => "Document: {$slug}",
         };
     }
@@ -184,6 +185,7 @@ class DocumentController extends Controller
             'filament-tree' => ['2.x', '3.x'],
             'filament-tab-plugin' => ['2.x', '3.x'],
             'Filament-SimpleLightBox' => ['3.x'],
+            'simple-contact-form' => ['main'],
             default => [],
         };
         return collect($versions)->mapWithKeys(fn ($version) => [
@@ -201,6 +203,7 @@ class DocumentController extends Controller
             'filament-tree',
             'filament-tab-plugin',
             'Filament-SimpleLightBox',
+            'simple-contact-form',
         ];
     }
 

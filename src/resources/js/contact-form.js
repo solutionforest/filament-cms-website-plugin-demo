@@ -1,0 +1,11 @@
+// import '../../vendor/filament/support/resources/js/index.js'
+// import '../../vendor/filament/schemas/resources/js/index.js'
+// import '../../vendor/filament/forms/resources/js/index.js'
+// import '../../vendor/filament/actions/resources/js/index.js'
+// import '../../vendor/filament/notifications/resources/js/index.js'
+
+import '../../public/js/filament/support/support.js'
+import '../../public/js/filament/schemas/schemas.js'
+// import '../../public/js/filament/forms/**/*.js'
+import '../../public/js/filament/actions/actions.js'
+import '../../public/js/filament/notifications/notifications.js'

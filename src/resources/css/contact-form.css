@@ -1,0 +1,68 @@
+@import './filament/admin/theme.css';
+
+@theme inline {
+
+    --primary-50: #e4e5e6;
+    --primary-100: #d7d8da;
+    --primary-200: #c9cbce;
+    --primary-300: #bcbec2;
+    --primary-400: #aeb1b6;
+    --primary-500: #a1a4aa;
+    --primary-600: #828a96;
+    --primary-700: #637081;
+    --primary-800: #45576d;
+    --primary-900: #263d58;
+    --primary-950: #072344;
+
+    --info-50: #f0f4f8;
+    --info-100: #d9e2ec;
+    --info-200: #bcccdc;
+    --info-300: #9fb3c8;
+    --info-400: #829ab1;
+    --info-500: #627d98;
+    --info-600: #486581;
+    --info-700: #334e68;
+    --info-800: #243b53;
+    --info-900: #102a43;
+    --info-950: #0f172a;
+
+    --warning-50: #fefce8;
+    --warning-100: #fef9c3;
+    --warning-200: #fef08a;
+    --warning-300: #fde047;
+    --warning-400: #facc15;
+    --warning-500: #eab308;
+    --warning-600: #ca8a04;
+    --warning-700: #a16207;
+    --warning-800: #854d0e;
+    --warning-900: #713f12;
+    --warning-950: #422006;
+
+    --danger-50: #fef2f2;
+    --danger-100: #fee2e2;
+    --danger-200: #fecaca;
+    --danger-300: #fca5a5;
+    --danger-400: #f87171;
+    --danger-500: #ef4444;
+    --danger-600: #dc2626;
+    --danger-700: #b91c1c;
+    --danger-800: #991b1b;
+    --danger-900: #7f1d1d;
+    --danger-950: #450a0a;
+
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --gray-950: #030712;
+}
+
+.contact-form-ctn {
+    @apply p-6 ring-1 ring-gray-200 dark:ring-gray-700 rounded-lg bg-white dark:bg-gray-800;
+}

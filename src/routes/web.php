@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\DocumentController;
+use SolutionForest\SimpleContactForm\Models\ContactForm;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,22 @@ use App\Http\Controllers\DocumentController;
 Route::get('docs', [DocumentController::class, 'index'])->name('docs.index');
 Route::get('docs/{document}/{version?}', [DocumentController::class, 'show'])->name('docs.show');
 
+Route::get('contact-forms/{key}', function ($key) {
+    $form = ContactForm::findOrFail($key);
+    
+    return view('contact-form.show', [
+        'form' => $form,
+        'layout' => [
+            'data' => [
+                'seo' => new \SolutionForest\FilamentCms\SEO\Support\SEOData(
+                    title: 'Contact Form - ' . $form->name,
+                    site_name: config('app.name'),
+                    locale: app()->getLocale(),
+                ),
+            ],
+        ],
+    ]);
+})->name('contact-form.display');
 
 Route::get('change-locale/{locale}', function ($locale) {
 

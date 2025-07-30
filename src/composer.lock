@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "178437d9915afdaa303e7d9242027dc3",
+    "content-hash": "a8d4d61efdc6382c499ac6c691e91552",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7609,6 +7609,86 @@
                 "source": "https://github.com/solution-forest/filament-tree"
             },
             "time": "2025-07-28T03:18:31+00:00"
+        },
+        {
+            "name": "solution-forest/simple-contact-form",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/solutionforest/simple-contact-form.git",
+                "reference": "6e0fec447a2d49d80aa1b6dba9d479a2321eb25e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/solutionforest/simple-contact-form/zipball/6e0fec447a2d49d80aa1b6dba9d479a2321eb25e",
+                "reference": "6e0fec447a2d49d80aa1b6dba9d479a2321eb25e",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.0",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.0",
+                "nunomaduro/termwind": "^2.0",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.1",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "SimpleContactForm": "SolutionForest\\SimpleContactForm\\Facades\\SimpleContactForm"
+                    },
+                    "providers": [
+                        "SolutionForest\\SimpleContactForm\\SimpleContactFormServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SolutionForest\\SimpleContactForm\\": "src/",
+                    "SolutionForest\\SimpleContactForm\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "hayward",
+                    "email": "info@solutionforest.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package simple-contact-form",
+            "homepage": "https://github.com/solutionforest/simple-contact-form",
+            "keywords": [
+                "laravel",
+                "simple-contact-form",
+                "solutionforest"
+            ],
+            "support": {
+                "issues": "https://github.com/solutionforest/simple-contact-form/issues",
+                "source": "https://github.com/solutionforest/simple-contact-form"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/SolutionForest",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-07-16T06:42:34+00:00"
         },
         {
             "name": "solution-forest/tab-layout-plugin",

@@ -29,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
 
         Livewire::component('code-wrapper', CodeWrapper::class);
 
+        Livewire::component('contact-form', \SolutionForest\SimpleContactForm\Livewire\ContactFormComponent::class);
+
         // // permissions
         // \BezhanSalleh\FilamentShield\Facades\FilamentShield::configurePermissionIdentifierUsing(
         //     fn ($resource) => (string) str($resource::getModel())
