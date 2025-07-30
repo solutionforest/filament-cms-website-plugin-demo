@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source '../views/**/*.blade.php';
+@source '../../vendor/solution-forest/filament-cms-website-plugin/resources/views/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #072344;
+    --color-secondary: #00aaa1;
+    --color-green: #007c85;
+    --color-grey-lighter: #eceef1;
+    --color-blue-dark: #263d58;
+}
+
+@layer components {
+    .font-body {
+        font-family: Poppins, sans-serif;
+    }
+}
+
+@layer utilities {
+    .container {
+        max-width: 25rem;
+        width: 100%;
+
+        @variant sm {
+            max-width: 640px;
+        }
+
+        @variant md {
+            max-width: 768px;
+        }
+
+        @variant lg {
+            max-width: 1000px;
+        }
+
+        @variant xl {
+            max-width: 1200px;
+        }
+
+        @variant 2xl {
+            max-width: 1400px;
+        }
+    }
+}
+
+html {
+  @apply font-sans antialiased;
+}
+
+.twitter-card {
+  @apply mt-8 mb-8 rounded bg-yellow-200 px-6 py-8 sm:mt-10 sm:mb-10 md:px-10;
+
+  & &-title {
+    @apply mt-0 font-sans text-lg font-normal text-blue-dark dark:text-blue-dark sm:text-xl;
+  }
+
+  & &-source {
+    @apply block pt-2 font-sans text-sm font-light text-blue-dark underline;
+  }
+
+  & &-btn {
+    @apply mt-8 mb-0 inline-block border border-blue-dark px-5 py-2 font-sans font-semibold text-blue-dark no-underline transition-colors hover:bg-primary hover:text-white sm:mb-4;
+  }
+}
+
