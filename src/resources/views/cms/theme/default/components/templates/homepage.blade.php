@@ -39,6 +39,30 @@
         <div class="flex items-center pb-6">
           <img src="/assets/img/icon-story.png" alt="icon story">
           <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
+            Other Plugins
+          </h3>
+        </div>
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2">
+          @foreach ([
+              ['url' => 'http://filaletter.solutionforest.net/', 'img' => asset('assets/img/plugins/solution-forest-filaletter.png')],
+              ['url' => 'https://inspirecms.net/', 'img' => asset('assets/img/plugins/solution-forest-inspirecms.png')],
+          ] as $item)
+              
+            <a href="{{ $item['url'] }}" target="__blank">
+              <img 
+                class="rounded-xl shadow-lg px-6 py-4 w-full object-contain bg-gray-100 dark:bg-gray-700"
+                style="height: 18rem;"
+                src="{{ $item['img'] }}" 
+                >
+            </a>
+          @endforeach
+        </div>
+      </div>
+
+      <div class="border-b border-grey-lighter py-16 lg:py-20">
+        <div class="flex items-center pb-6">
+          <img src="/assets/img/icon-story.png" alt="icon story">
+          <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
             My Story
           </h3>
         </div>
