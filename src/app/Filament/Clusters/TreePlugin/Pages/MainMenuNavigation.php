@@ -9,7 +9,7 @@ use App\Filament\Widgets\FilamentCmsInfo;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Group;
-use App\Filament\Clusters\TreePlugin;
+use App\Filament\Clusters\TreePlugin\TreePluginCluster;
 use App\Models\CmsPageNavigation as TreePageModel;
 use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
 use Filament\Forms;
@@ -29,7 +29,7 @@ class MainMenuNavigation extends BasePage
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bars-3-center-left';
 
-    protected static ?string $cluster = TreePlugin::class;
+    protected static ?string $cluster = TreePluginCluster::class;
 
     protected static ?int $navigationSort = 10;
 

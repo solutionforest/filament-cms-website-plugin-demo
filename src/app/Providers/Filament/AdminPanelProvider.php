@@ -21,7 +21,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
-use SolutionForest\FilamentCms\FilamentCmsPanel;
+use SolutionForest\FilamentCms\FilamentCmsPlugin;
 use SolutionForest\FilamentSimpleLightBox\SimpleLightBoxPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->plugin(SpatieTranslatablePlugin::make()->defaultLocales(config('filament-cms.locales')))
-            ->plugin(FilamentCmsPanel::make())
+            ->plugin(FilamentCmsPlugin::make())
             ->plugin(FilamentShieldPlugin::make())
             ->plugin(SimpleLightBoxPlugin::make())
             ->globalSearch(false)

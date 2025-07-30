@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages;
+namespace App\Filament\Clusters\TabPlugin\Resources\ProductCategories\Pages;
 
-use App\Filament\Clusters\TreePlugin\ProductCategoryResource;
+use App\Filament\Clusters\TabPlugin\Resources\ProductCategories\ProductCategoryResource;
 
 class EditProductCategory extends \App\Filament\Resources\ProductCategories\Pages\EditProductCategory
 {

@@ -6,16 +6,15 @@ use App\Filament\Clusters\TabPlugin\Resources\ProductCategories\ProductCategoryR
 use App\Filament\Widgets\DummyTabs;
 use App\Filament\Widgets\FilamentCmsInfo;
 use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
 
-class ListProductCategories extends ListRecords
+class ListProductCategories extends \App\Filament\Resources\ProductCategories\Pages\ListProductCategories
 {
     protected static string $resource = ProductCategoryResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            // CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 
@@ -23,7 +22,6 @@ class ListProductCategories extends ListRecords
     {
         return [
             FilamentCmsInfo::make(['limit' => ['tab-layout-plugin'], 'showDemoLink' => false]),
-            
             DummyTabs::class,
         ];
     }

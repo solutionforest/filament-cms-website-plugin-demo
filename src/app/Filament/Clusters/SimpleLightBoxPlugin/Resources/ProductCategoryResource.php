@@ -2,48 +2,27 @@
 
 namespace App\Filament\Clusters\SimpleLightBoxPlugin\Resources;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Section;
-use Filament\Infolists\Components\ImageEntry;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ColumnGroup;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
+use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\Pages\ManageProductCategories;
+use App\Filament\Clusters\SimpleLightBoxPlugin\SimpleLightBoxPluginCluster;
+use App\Models\ProductCategory;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\Pages\ManageProductCategories;
-use App\Filament\Clusters\SimpleLightBoxPlugin;
-use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\Pages;
-use App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource\RelationManagers;
-use App\Models\ProductCategory;
-use Filament\Forms;
-use Filament\Infolists;
-use Filament\Resources\Resource;
-use Filament\Schema\Schema;
-use Filament\Tables;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Section;
+use Filament\Tables\Columns\ColumnGroup;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Console\View\Components\Info;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductCategoryResource extends Resource
+class ProductCategoryResource extends \App\Filament\Resources\ProductCategories\ProductCategoryResource
 {
-    protected static ?string $model = ProductCategory::class;
+    protected static ?string $cluster = SimpleLightBoxPluginCluster::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $cluster = SimpleLightBoxPlugin::class;
-
-    public static function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
-    {
-        return $schema
-            ->components([
-                TextInput::make('title')->required(),
-                TextInput::make('resource')->url(),
-            ]);
-    }
+    protected static bool $shouldRegisterNavigation = true;
 
     public static function infolist(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
@@ -106,13 +85,6 @@ class ProductCategoryResource extends Resource
                     DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array
