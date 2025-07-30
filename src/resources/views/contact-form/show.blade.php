@@ -14,9 +14,6 @@
     @section('footer')
     @endsection
     
-    @pushOnce('beforeCoreStyles')
-        @livewireStyles
-    @endPushOnce
     @pushOnce('styles')
         @vite('resources/css/contact-form.css')
     @endPushOnce

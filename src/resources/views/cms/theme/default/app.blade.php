@@ -17,11 +17,12 @@
         {!! seo($seo) !!}
     @endisset
     @stack('beforeCoreStyles')
+    @livewireStyles
     @vite(['resources/css/app.css'])
     @stack('styles')
 </head>
 
-<body x-data="{ isMobileMenuOpen: false }" x-init="console.log('Mobile menu initialized: ', isMobileMenuOpen);"
+<body x-data="{ isMobileMenuOpen: false }"
     :class="{
         'max-h-screen overflow-hidden relative' : isMobileMenuOpen,
     }"
@@ -40,6 +41,7 @@
     @show
 
     @stack('beforeCoreScripts')
+    @livewireScriptConfig 
     @vite(['resources/js/app.js'])
     @stack('scripts')
 
