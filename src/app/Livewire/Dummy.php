@@ -37,17 +37,15 @@ class Dummy extends Component
     {
         return <<<'HTML'
         <div style="padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-            <h1>Dummy Component</h1>
-            <p>This is a dummy component to demonstrate Livewire functionality.</p>
-            <br/>
-            <div style="display: flex; gap: 10px;">
+            <h1 style="font-weight:var(--font-weight-bold);font-size: var(--text-xl);">Dummy Livewire</h1>
+            <div style="display: flex; gap: 10px; align-items: center;">
                 <button wire:click="increment">+</button>
                 <span>{{ $this->count }}</span>
                 <button wire:click="decrement">-</button>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button wire:click="resetCount">Refresh</button>
-                <button wire:click="submit" type="submit">Submit</button>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <x-filament::button color="gray" size="xs" wire:click="resetCount">Refresh</x-filament::button>
+                <x-filament::button color="gray" size="xs" wire:click="submit" type="submit">Submit</x-filament::button>
             </div>
         </div>
         HTML;
