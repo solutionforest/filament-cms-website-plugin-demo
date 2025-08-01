@@ -5,7 +5,7 @@
 <div class="container mx-auto">
     <div class="flex items-center justify-between py-6 lg:py-10">
         <a href="/" class="flex items-center">
-            <p class="hidden font-body text-2xl font-bold text-primary dark:text-white lg:block">
+            <p class="hidden font-sans text-2xl font-bold text-primary dark:text-white lg:block">
                 Demo Site
             </p>
         </a>
@@ -69,7 +69,7 @@
                         class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
                             </div>
                         <a href="{{ $url }}"
-                            class="relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary">{{ $item->title }}</a>
+                            class="relative z-30 block px-2 font-sans text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary">{{ $item->title }}</a>
                     </li>
                 @endforeach
 

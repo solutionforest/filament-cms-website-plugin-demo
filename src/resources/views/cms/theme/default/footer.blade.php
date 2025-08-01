@@ -7,7 +7,7 @@
             <a href="/" class="mr-auto sm:mr-6">
                 <img src="/assets/img/mini-logo.png" alt="logo" class="w-12 h-12">
             </a>
-            <p class="pt-5 font-body font-light text-primary dark:text-white sm:pt-0">
+            <p class="pt-5 font-sans font-light text-primary dark:text-white sm:pt-0">
                 ©{{ now()->year }} Solution Forest Limited.
             </p>
         </div>

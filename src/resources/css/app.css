@@ -10,7 +10,12 @@
     --color-primary: #072344;
     --color-secondary: #00aaa1;
     --color-green: #007c85;
+    --color-green-lighter: #00b2b4;
+    --color-green-dark: #005f66;
     --color-grey-lighter: #eceef1;
+    --color-grey-dark: #4a4a4a;
+    --color-blue: #456a95;
+    --color-blue-lighter: ##cedbf2;
     --color-blue-dark: #263d58;
 }
 

@@ -19,20 +19,20 @@
         <div class="border-b border-grey-lighter pb-8 sm:pb-12">
           @foreach ($categoryTags as $categoryTag)
             <a href="#">
-              <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-body text-sm text-green sm:mb-8">
+              <span class="mb-5 inline-block rounded-full bg-green-light px-2 py-1 font-sans text-sm text-green sm:mb-8">
                 {{ $categoryTag->title }}
               </span>
             </a>
           @endforeach
-          <h2 class="block font-body text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl">
+          <h2 class="block font-sans text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl">
             {{ $page->title }}
           </h2>
           <div class="flex items-center pt-5 sm:pt-8">
-            <p class="pr-2 font-body font-light text-primary dark:text-white">
+            <p class="pr-2 font-sans font-light text-primary dark:text-white">
                 {{ $page->published_at?->format('M d, Y') }}
             </p>
-            <span class="vdark:text-white font-body text-grey">//</span>
-            <p class="pl-2 font-body font-light text-primary dark:text-white">
+            <span class="vdark:text-white font-sans text-grey">//</span>
+            <p class="pl-2 font-sans font-light text-primary dark:text-white">
                 {{ $page->createdBy->name }}
             </p>
           </div>
