@@ -1,8 +1,5 @@
 <?php
 
-use App\Filament\Resources\ContentType\DocumentResource;
-use App\Filament\Widgets\FilamentCmsInfo;
-
 return [
     'shield_resource' => [
         'should_register_navigation' => true,
@@ -10,11 +7,14 @@ return [
         'navigation_sort' => -1,
         'navigation_badge' => true,
         'navigation_group' => true,
+        'sub_navigation_position' => null,
         'is_globally_searchable' => false,
         'show_model_path' => true,
         'is_scoped_to_tenant' => true,
         'cluster' => null,
     ],
+
+    'tenant_model' => null,
 
     'auth_provider_model' => [
         'fqcn' => 'App\\Models\\User',
@@ -70,15 +70,24 @@ return [
 
         'pages' => [
             'Dashboard',
+            'SimpleContactFormPluginCluster',
+            'SimpleLightBoxPluginCluster',
+            'TabPluginCluster',
         ],
 
         'widgets' => [
             'AccountWidget',
             'FilamentInfoWidget',
             'FilamentCmsInfo', // FilamentCmsInfo::class,
+            'DummyTabs',
+            'ProductCategory', // ProductCategory::class,
         ],
 
-        'resources' => [],
+        'resources' => [
+            'RoleResource',
+            'ProductCategoryResource',
+            'ContactFormResource',
+        ],
     ],
 
     'discovery' => [

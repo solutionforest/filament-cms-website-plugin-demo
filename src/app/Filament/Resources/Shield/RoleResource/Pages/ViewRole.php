@@ -2,19 +2,10 @@
 
 namespace App\Filament\Resources\Shield\RoleResource\Pages;
 
-use Filament\Actions\EditAction;
 use App\Filament\Resources\Shield\RoleResource;
-use Filament\Actions;
-use Filament\Resources\Pages\ViewRecord;
+use BezhanSalleh\FilamentShield\Resources\RoleResource\Pages\ViewRole as BaseViewRole;
 
-class ViewRole extends ViewRecord
+class ViewRole extends BaseViewRole
 {
     protected static string $resource = RoleResource::class;
-
-    protected function getActions(): array
-    {
-        return [
-            EditAction::make(),
-        ];
-    }
 }

@@ -22,14 +22,14 @@ class CmsPageResource extends BaseResource implements
 
     public static function getPermissionPrefixes(): array
     {
-        return Utils::getGeneralResourcePermissionPrefixes();
-        return array_merge(Utils::getGeneralResourcePermissionPrefixes(), [
-            'audit',
-            'audit_rollback',
-            'publish',
-            'unpublish',
-            'schedule_publish',
-        ]);
+        return Utils::getGeneralResourcePermissionPrefixes(static::class);
+        // return array_merge(Utils::getGeneralResourcePermissionPrefixes(), [
+        //     'audit',
+        //     'audit_rollback',
+        //     'publish',
+        //     'unpublish',
+        //     'schedule_publish',
+        // ]);
     }
 
     public static function getPages(): array

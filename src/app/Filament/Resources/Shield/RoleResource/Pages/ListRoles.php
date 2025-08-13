@@ -2,19 +2,10 @@
 
 namespace App\Filament\Resources\Shield\RoleResource\Pages;
 
-use Filament\Actions\CreateAction;
 use App\Filament\Resources\Shield\RoleResource;
-use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use BezhanSalleh\FilamentShield\Resources\RoleResource\Pages\ListRoles as BaseListRoles;
 
-class ListRoles extends ListRecords
+class ListRoles extends BaseListRoles
 {
     protected static string $resource = RoleResource::class;
-
-    protected function getActions(): array
-    {
-        return [
-            CreateAction::make(),
-        ];
-    }
 }
