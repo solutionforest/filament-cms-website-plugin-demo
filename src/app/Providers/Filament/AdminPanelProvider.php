@@ -80,7 +80,10 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->viteTheme('resources/css/filament/admin/theme.css');
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->widgets([
+                \App\Filament\Widgets\ProductCategory::class,
+            ]);
 
         $this->renderHooks($panel);
 
