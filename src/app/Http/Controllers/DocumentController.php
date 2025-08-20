@@ -194,7 +194,6 @@ class DocumentController extends Controller
             'filament-panzoom' => ['main'],
             'filament-scaffold' => ['main'],
             'filament-rating-star' => ['main'],
-            'filamentloginscreen' => ['main'],
             'filament-email-2fa' => ['1.x', '2.x'],
             'filament-unlayer' => ['main'],
             'filament-panphp' => ['main'],
