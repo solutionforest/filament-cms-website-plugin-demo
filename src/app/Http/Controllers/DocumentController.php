@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Throwable;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
-use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\TableExtension;
-use League\CommonMark\Extension\TaskList\TaskListExtension;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
+use League\CommonMark\Extension\TaskList\TaskListExtension;
 use SolutionForest\FilamentCms\SEO\Support\SEOData;
+use Throwable;
 
 class DocumentController extends Controller
 {
@@ -48,6 +49,8 @@ class DocumentController extends Controller
         try {
             $versions = $this->getVersionSelection($document);
             
+            $github = "https://github.com/solutionforest/{$document}";
+            
             // Get latest version if no version is specified
             if (empty($version)) {
                 $version = collect($versions)->keys()->sortDesc()->first();
@@ -61,6 +64,7 @@ class DocumentController extends Controller
                 'document' => $document,
                 'version' => $version,
                 'versions' => $versions,
+                'github' => $github,
             ]);
         } catch (Throwable $th) {
             abort(404);
@@ -168,43 +172,62 @@ class DocumentController extends Controller
             return 'Documentation';
         }
 
-        return match ($slug) {
-            'filament-cms-website-plugin' => 'Filament CMS',
-            'filament-tree' => 'Filament Tree',
-            'filament-tab-plugin' => 'Filament Tab Plugin',
-            'Filament-SimpleLightBox' => 'Filament Simple Lightbox',
-            'simple-contact-form' => 'Simple Contact Form Plugin',
-            default => "Document: {$slug}",
-        };
+        return collect($this->getVersionSelections())->get($slug)['title'] ?? "Document: {$slug}";
     }
 
     protected function getVersionSelection($document)
     {
-        $versions = match ($document) {
+        return collect($this->getVersionSelections())->get($document, [])['versions'] ?? [];
+    }
+
+    protected function getVersionSelections()
+    {
+        $mapper = [
             'filament-cms-website-plugin' => ['2.x', '3.x'],
             'filament-tree' => ['2.x', '3.x'],
             'filament-tab-plugin' => ['2.x', '3.x'],
             'Filament-SimpleLightBox' => ['3.x'],
             'simple-contact-form' => ['main'],
-            default => [],
-        };
-        return collect($versions)->mapWithKeys(fn ($version) => [
-            $version => [
-                'title' => $version,
-                'url' => route('docs.show', ['document' => $document, 'version' => $version]),
-            ]
-        ])->all();
+            'filament-firewall' => ['2.x', '3.x'],
+            'filament-field-group' => ['1.x', '2.x'],
+            'filament-translate-field' => ['1.x', '2.x'],
+            'filament-panzoom' => ['main'],
+            'filament-scaffold' => ['main'],
+            'filament-pill-select' => ['main'],
+            'filament-time-range-picker' => ['main'],
+            'filament-otp-input' => ['master'],
+            'filament-rating-star' => ['main'],
+            'filamentloginscreen' => ['main'],
+            'filament-email-2fa' => ['1.x', '2.x'],
+            'filament-unlayer' => ['main'],
+            'filament-panphp' => ['main'],
+        ];
+        return collect($mapper)
+            ->map(fn ($versions, $key) => [
+                'title' =>  match ($key) {
+                    'filament-cms-website-plugin' => 'Filament CMS',
+                    'Filament-SimpleLightBox' => 'Filament Simple Lightbox',
+                    'simple-contact-form' => 'Simple Contact Form Plugin',
+                    'filamentloginscreen' => 'Filament Login Screen',
+                    default => Str::title(str_replace('-', ' ', $key)),
+                },
+                'versions' => collect($versions)->mapWithKeys(fn ($version) => [
+                    $version => [
+                        'title' => $version,
+                        'url' => route('docs.show', ['document' => $key, 'version' => $version]),
+                    ]
+                ])->all(),
+            ])
+            ->all();
     }
 
     protected function getAvailabelPlugins()
     {
-        return [
-            'filament-cms-website-plugin',
-            'filament-tree',
-            'filament-tab-plugin',
-            'Filament-SimpleLightBox',
-            'simple-contact-form',
-        ];
+        // dd(
+        //     collect($this->getVersionSelections()),
+        //     array_keys($this->getVersionSelections()),
+        // );
+        return array_keys($this->getVersionSelections());
     }
 
     protected function renderMarkdownToHtml(string $markdownContent)
