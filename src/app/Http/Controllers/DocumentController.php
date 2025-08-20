@@ -65,6 +65,7 @@ class DocumentController extends Controller
                 'version' => $version,
                 'versions' => $versions,
                 'github' => $github,
+                'githubBranch' => $versions[$version]['branch'] ?? $version,
             ]);
         } catch (Throwable $th) {
             abort(404);
@@ -186,17 +187,17 @@ class DocumentController extends Controller
             'filament-cms-website-plugin' => ['2.x', '3.x'],
             'filament-tree' => ['2.x', '3.x'],
             'filament-tab-plugin' => ['2.x', '3.x'],
-            'Filament-SimpleLightBox' => ['3.x'],
-            'simple-contact-form' => ['main'],
+            'Filament-SimpleLightBox' => ['3.x', '4.x' => '3.x'],
+            'simple-contact-form' => ['0.x' => 'main', '2.x' => 'main'],
             'filament-firewall' => ['2.x', '3.x'],
             'filament-field-group' => ['1.x', '2.x'],
             'filament-translate-field' => ['1.x', '2.x'],
-            'filament-panzoom' => ['main'],
-            'filament-scaffold' => ['main'],
-            'filament-rating-star' => ['main'],
+            'filament-panzoom' => ['1.x' => 'main'],
+            'filament-scaffold' => ['0.x' => 'main'],
+            'filament-rating-star' => ['2.x' => 'main'],
             'filament-email-2fa' => ['1.x', '2.x'],
-            'filament-unlayer' => ['main'],
-            'filament-panphp' => ['main'],
+            'filament-unlayer' => ['0.x' => 'main', '2.x' => 'main'],
+            'filament-panphp' => ['0.x' => 'main'],
         ];
         return collect($mapper)
             ->map(fn ($versions, $key) => [
@@ -207,12 +208,29 @@ class DocumentController extends Controller
                     'filamentloginscreen' => 'Filament Login Screen',
                     default => Str::title(str_replace('-', ' ', $key)),
                 },
-                'versions' => collect($versions)->mapWithKeys(fn ($version) => [
-                    $version => [
-                        'title' => $version,
-                        'url' => route('docs.show', ['document' => $key, 'version' => $version]),
-                    ]
-                ])->all(),
+                'versions' => collect($versions)
+                    ->mapWithKeys(function ($versionOrBranch, $indexOrVersion) use ($key) {
+                        // If the version is a string, use it as is
+                        if (is_string($indexOrVersion)) {
+                            return [$indexOrVersion => [
+                                'title' => $indexOrVersion,
+                                'url' => route('docs.show', ['document' => $key, 'version' => $indexOrVersion]),
+                                'branch' => $versionOrBranch,
+                            ]];
+                        }
+                        return [$versionOrBranch => [
+                            'title' => $versionOrBranch,
+                            'url' => route('docs.show', ['document' => $key, 'version' => $versionOrBranch]),
+                            'branch' => $versionOrBranch,
+                        ]];
+                    })
+                    ->all(),
+                // 'versions' => collect($versions)->mapWithKeys(fn ($versionOrBranch, $indexOrVersion) => [
+                //     $version => [
+                //         'title' => $version,
+                //         'url' => route('docs.show', ['document' => $key, 'version' => $version]),
+                //     ]
+                // ])->all(),
             ])
             ->all();
     }
