@@ -193,8 +193,6 @@ class DocumentController extends Controller
             'filament-translate-field' => ['1.x', '2.x'],
             'filament-panzoom' => ['main'],
             'filament-scaffold' => ['main'],
-            'filament-pill-select' => ['main'],
-            'filament-time-range-picker' => ['main'],
             'filament-rating-star' => ['main'],
             'filamentloginscreen' => ['main'],
             'filament-email-2fa' => ['1.x', '2.x'],
