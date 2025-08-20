@@ -99,11 +99,13 @@
         </article>
     </div>
 
+    
+
     @pushOnce('scripts')
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('mdContent', function () {
-                const url = @js(route('docs.get.markdown', ['document' => $document, 'version' => $version ?? null]));
+                const url = @js(route('docs.get.markdown', ['document' => $document, 'version' => $githubBranch ?? null]));
                 return {
                     markdownContent: null,
                     loadingHtml: '<div class="text-center text-gray-500">Loading...</div>',
