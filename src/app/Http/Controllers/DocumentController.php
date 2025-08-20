@@ -195,7 +195,6 @@ class DocumentController extends Controller
             'filament-scaffold' => ['main'],
             'filament-pill-select' => ['main'],
             'filament-time-range-picker' => ['main'],
-            'filament-otp-input' => ['master'],
             'filament-rating-star' => ['main'],
             'filamentloginscreen' => ['main'],
             'filament-email-2fa' => ['1.x', '2.x'],
