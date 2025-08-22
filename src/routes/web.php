@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -16,9 +15,6 @@ use SolutionForest\SimpleContactForm\Models\ContactForm;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('docs', [DocumentController::class, 'index'])->name('docs.index');
-Route::get('docs/{document}/{version?}', [DocumentController::class, 'show'])->name('docs.show');
 
 Route::get('contact-forms/{key}', function ($key) {
     $form = ContactForm::findOrFail($key);

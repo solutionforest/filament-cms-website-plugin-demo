@@ -25,7 +25,7 @@
                 <div class="flex flex-col items-end gap-y-1">
                     <x-filament::link
                         color="gray"
-                        href="{{ $this->getFilamentCmsPluginDocLink() }}"
+                        href="{{ $this->getDocLink() }}"
                         icon="heroicon-m-book-open"
                         icon-alias="panels::widgets.filament-info.open-documentation-button"
                         rel="noopener noreferrer"

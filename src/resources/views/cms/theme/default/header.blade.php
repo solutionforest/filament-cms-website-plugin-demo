@@ -1,6 +1,7 @@
 @php
     $menu = \SolutionForest\FilamentCms\Facades\FilamentCms::getNavigation('main-menu') ?? [];
     $locale = \Illuminate\Support\Facades\App::getLocale();
+    $docLink = 'https://solutionforest.github.io/plugins-doc-site';
 @endphp
 <div class="container mx-auto">
     <div class="flex items-center justify-between py-6 lg:py-10">
@@ -47,6 +48,17 @@
                                         </div>
                                     </a>
                                 @endforeach
+                                
+                                <a href="{{ $docLink }}" target="_blank" rel="noopener noreferrer">
+                                    <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                                        <div class="font-semibold text-gray-900 flex items-center">
+                                            <span class="mr-2">Docs</span>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -72,6 +84,16 @@
                             class="relative z-30 block px-2 font-sans text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary">{{ $item->title }}</a>
                     </li>
                 @endforeach
+
+                <li class="group relative mr-6 mb-1">
+                    <a href="{{ $docLink }}" target="_blank" rel="noopener noreferrer"
+                        class="ml-6 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm hover:bg-gray-400">
+                        <span class="mr-1">Docs</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path>
+                        </svg>
+                    </a>
+                </li>
 
                 <li class="group relative mr-6 mb-1">
                     <a href="{{ route('locale.switch', ['locale' => $locale == 'en' ? 'zh-HK' : 'en']) }}" 

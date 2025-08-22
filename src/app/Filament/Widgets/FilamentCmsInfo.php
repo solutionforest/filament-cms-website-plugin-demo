@@ -15,33 +15,35 @@ class FilamentCmsInfo extends Widget
 
     public bool $showDemoLink = true;
 
+    public static string $docLink = 'https://solutionforest.github.io/plugins-doc-site';
+
     public function getPluginInfos(): array
     {
         $data = array_map(fn ($arr) => array_merge($arr, ['version' => $this->getPluginInstallVersion($arr['packageName'])]), [
             [
                 'name' => 'Filament CMS Website Plugin',
-                'packageName' => $this->getFilamentCmsPackageName(),
-                'url' => $this->getFilamentCmsPluginLink(),
+                'packageName' => 'solution-forest/filament-cms-website-plugin',
+                'url' => static::getFilamentPluginUrl('solution-forest-cms-website'),
             ],
             [
                 'name' => 'Tree',
-                'packageName' => $this->getFilamentTreePackageName(),
-                'url' => $this->getFilamentTreePluginLink(),
+                'packageName' => 'solution-forest/filament-tree',
+                'url' => static::getFilamentPluginUrl('solution-forest-tree'),
             ],
             [
                 'name' => 'Simple Lightbox',
                 'packageName' => 'solution-forest/filament-simplelightbox',
-                'url' => 'https://github.com/solutionforest/Filament-SimpleLightBox',
+                'url' => static::getFilamentPluginUrl('solution-forest-simplelightbox'),
             ],
             [
                 'name' => 'Filament Tab Plugin',
                 'packageName' => 'solution-forest/tab-layout-plugin',
-                'url' => 'https://github.com/solutionforest/filament-tab-plugin',
+                'url' => static::getFilamentPluginUrl('solution-forest-tab-layout-plugin'),
             ],
             [
                 'name' => 'Simple Contact Form Plugin',
                 'packageName' => 'solution-forest/simple-contact-form',
-                'url' => 'https://github.com/solutionforest/simple-contact-form',
+                'url' => static::getFilamentPluginUrl('solution-forest-simple-contact-form'),
             ]
         ]);
 
@@ -52,11 +54,9 @@ class FilamentCmsInfo extends Widget
         return ($data);
     }
 
-    public function getFilamentCmsPluginDocLink()
+    public function getDocLink()
     {
-        return route('filament-cms.web.page', [
-            'slug' => 'docs',
-        ]);
+        return static::$docLink;
     }
 
     public function getDemoGithubLink()
@@ -69,23 +69,8 @@ class FilamentCmsInfo extends Widget
         return InstalledVersions::getPrettyVersion($packageName);
     }
 
-    private function getFilamentCmsPluginLink()
+    private static function getFilamentPluginUrl($slug)
     {
-        return 'https://filamentphp.com/plugins/solution-forest-cms-website';
-    }
-
-    private function getFilamentTreePluginLink()
-    {
-        return 'https://filamentphp.com/plugins/solution-forest-tree';
-    }
-
-    private function getFilamentCmsPackageName(): string
-    {
-        return 'solution-forest/filament-cms-website-plugin';
-    }
-
-    private function getFilamentTreePackageName(): string
-    {
-        return 'solution-forest/filament-tree';
+        return "https://filamentphp.com/plugins/{$slug}";
     }
 }
