@@ -33,7 +33,7 @@
             </p>
             <span class="vdark:text-white font-sans text-grey">//</span>
             <p class="pl-2 font-sans font-light text-primary dark:text-white">
-                {{ $page->createdBy->name }}
+                {{ $page->createdBy?->name ?? 'N/A' }}
             </p>
           </div>
         </div>
