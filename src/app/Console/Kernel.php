@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\RestoreData;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Log;
@@ -23,7 +24,7 @@ class Kernel extends ConsoleKernel
         // })->hourly();
         // Schedule the database.sqlite.example file to be copied to database.sqlite every hour
         // and clear all files in the storage/app/public directory
-        $schedule->command('restore-data')->hourly();
+        $schedule->command(RestoreData::class)->hourly();
         // $schedule->call(fn () => Log::info('This is a scheduled task'))->everyMinute();
     }
 
