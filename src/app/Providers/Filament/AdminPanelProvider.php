@@ -2,10 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Clusters\SimpleContactFormPlugin\SimpleContactFormPluginCluster;
 use App\Filament\Pages\Auth\Login;
-use App\Filament\Pages\Auth\ViewProfile;
-use App\Filament\Resources\Shield\RoleResource;
-use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -35,13 +33,15 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->plugin(SpatieTranslatablePlugin::make()->defaultLocales(config('filament-cms.locales')))
             ->plugin(FilamentCmsPlugin::make())
-            ->plugin(FilamentShieldPlugin::make())
             ->plugin(SimpleLightBoxPlugin::make())
-            ->plugin(SimpleContactFormPlugin::make())
+            ->plugin(SimpleContactFormPlugin::make()
+                ->navigationParentItem(SimpleContactFormPluginCluster::class)
+            )
             ->globalSearch(false)
             ->login(Login::class)
             ->darkMode(true)
             ->sidebarFullyCollapsibleOnDesktop()
+            ->subNavigationPosition(\Filament\Pages\Enums\SubNavigationPosition::End)
             ->colors([
                 'primary' => [
                     50 => 'oklch(0.9535859816415481 0.03130588051648325 222.04905362663223)',
@@ -57,11 +57,13 @@ class AdminPanelProvider extends PanelProvider
                     950 => 'oklch(0.17532759303067164 0.030392295499926066 210.65764703957421)',
                 ]
             ])
-            ->profile(ViewProfile::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->pages([
+                \Filament\Pages\Dashboard::class,
+            ])
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
@@ -80,10 +82,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->viteTheme('resources/css/filament/admin/theme.css')
-            ->widgets([
-                \App\Filament\Widgets\ProductCategory::class,
-            ]);
+            ->viteTheme('resources/css/filament/admin/theme.css');
 
         $this->renderHooks($panel);
 
@@ -98,14 +97,6 @@ class AdminPanelProvider extends PanelProvider
                 'message' => 'The database will reset every hour.',
                 'type' => 'warning',
             ])
-        );
-        $panel->renderHook(
-            'panels::page.start',
-            fn () => view('alert', [
-                'message' => 'Some fields are disabled for guest users.',
-                'type' => 'info',
-            ]),
-            [RoleResource::class],
         );
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Filament\Widgets;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\ProductCategory as ModelsProductCategory;
 use App\Filament\Widgets;
+use App\Models\ProductCategory as ModelsProductCategory;
+use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Database\Eloquent\Model;
+use SolutionForest\FilamentTree\Actions\CreateAction;
 use SolutionForest\FilamentTree\Widgets\Tree as BaseWidget;
 
 class ProductCategory extends BaseWidget
@@ -30,11 +32,22 @@ class ProductCategory extends BaseWidget
             TextInput::make('title'),
         ];
     }
+    
+    protected function getTreeToolbarActions(): array
+    {
+        return [
+            Action::make('helloworld')
+                ->link()
+                ->successNotificationTitle('Hello World!')->action(fn ($action) => $action->success()),
+            CreateAction::make(),
+        ];
+    }
 
     protected function hasDeleteAction(): bool
     {
         return true;
     }
+
     protected function hasEditAction(): bool
     {
         return true;

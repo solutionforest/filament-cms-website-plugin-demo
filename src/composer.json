@@ -6,17 +6,18 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "bezhansalleh/filament-shield": "^4.0",
         "filament/filament": "^4.0",
         "lara-zeus/spatie-translatable": "^1.0",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "phiki/phiki": "^2.0",
         "solution-forest/filament-cms-website-plugin": "^3.0.0",
         "solution-forest/filament-simplelightbox": "^1.0",
-        "solution-forest/filament-tree": "^3.0",
+        "solution-forest/filament-tree": "^3.1.0",
         "solution-forest/simple-contact-form": "^2.0",
         "solution-forest/tab-layout-plugin": "^3.0",
+        "spatie/laravel-permission": "^6.21",
         "tapp/filament-auditing": "^4.0.0"
     },
     "require-dev": {
@@ -80,6 +81,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

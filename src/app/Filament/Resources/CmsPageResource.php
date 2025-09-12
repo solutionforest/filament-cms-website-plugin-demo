@@ -7,30 +7,15 @@ use App\Filament\Resources\CmsPageResource\Pages\CreateCmsPage;
 use App\Filament\Resources\CmsPageResource\Pages\EditCmsPage;
 use App\Filament\Resources\CmsPageResource\Pages;
 use App\Models\CmsPage;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Tables\Table;
 use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
 use SolutionForest\FilamentCms\Filament\Resources\CmsPageResource as BaseResource;
 
-class CmsPageResource extends BaseResource implements 
-    HasShieldPermissions // permission shield
+class CmsPageResource extends BaseResource
 {
     use Translatable;
 
     protected static ?string $model = CmsPage::class;
-
-    public static function getPermissionPrefixes(): array
-    {
-        return Utils::getGeneralResourcePermissionPrefixes(static::class);
-        // return array_merge(Utils::getGeneralResourcePermissionPrefixes(), [
-        //     'audit',
-        //     'audit_rollback',
-        //     'publish',
-        //     'unpublish',
-        //     'schedule_publish',
-        // ]);
-    }
 
     public static function getPages(): array
     {

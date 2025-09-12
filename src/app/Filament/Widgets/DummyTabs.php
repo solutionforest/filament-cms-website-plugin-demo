@@ -31,13 +31,16 @@ class DummyTabs extends BaseWidget
                         ->data(['tableSearch' => 'dress']),    // TARGET COMPONENT'S DATA
                 ]),
 
-            TabLayoutTab::make('Source Code')
+            TabLayoutTab::make('Source Code (Tab Plugin)')
                 ->schema([
                     // Display html
-                    str($this->demoSourceCode())
-                        ->markdown()
-                        ->wrap('<div class="prose rounded-xl shadow-sm" style="overflow: auto; padding: 12px; background-color: var(--gray-700); color: white;">', '</div>')
-                        ->toHtmlString(),
+                    static::codeToHtml($this->tabPluginDemoSourceCode(), 'php'),
+                ]),
+
+            TabLayoutTab::make('Source Code (Tree Plugin)')
+                ->schema([
+                    // Display html
+                    static::codeToHtml($this->treePluginDemoSourceCode(), 'php'),
                 ]),
 
             // Hyper link
@@ -46,10 +49,23 @@ class DummyTabs extends BaseWidget
         ];
     }
 
-    protected function demoSourceCode(): string
+    protected static function codeToHtml(string $code, $grammar = 'php')
+    {
+        $phiki = new \Phiki\Phiki();
+        $lightTheme = \Phiki\Theme\Theme::GithubLight;
+        $darkTheme = \Phiki\Theme\Theme::GithubDarkHighContrast;
+        $content = (string) $phiki->codeToHtml($code, $grammar, [
+            'light' => $lightTheme,
+            'dark' => $darkTheme,
+        ]);
+        return str($content)
+            ->wrap('<div class="fi-in-code">', '</div>')
+            ->toHtmlString();
+    }
+
+    protected function tabPluginDemoSourceCode(): string
     {
         return <<<'EOL'
-```php
 <?php
 
 namespace App\Filament\Widgets;
@@ -82,13 +98,16 @@ class DummyTabs extends BaseWidget
                         ->data(['tableSearch' => 'dress']),    // TARGET COMPONENT'S DATA
                 ]),
 
-            TabLayoutTab::make('Source Code')
+            TabLayoutTab::make('Source Code (Tab Plugin)')
                 ->schema([
                     // Display html
-                    str($this->demoSourceCode())
-                        ->markdown()
-                        ->wrap('<div class="prose rounded-xl shadow-sm" style="overflow: auto; padding: 12px; background-color: var(--gray-700); color: white;">', '</div>')
-                        ->toHtmlString(),
+                    static::codeToHtml($this->tabPluginDemoSourceCode(), 'php'),
+                ]),
+
+            TabLayoutTab::make('Source Code (Tree Plugin)')
+                ->schema([
+                    // Display html
+                    static::codeToHtml($this->treePluginDemoSourceCode(), 'php'),
                 ]),
 
             // Hyper link
@@ -96,8 +115,29 @@ class DummyTabs extends BaseWidget
                 ->url("https://filamentphp.com/", true),
         ];
     }
+
+    protected static function codeToHtml(string $code, $grammar = 'php')
+    {
+        $phiki = new \Phiki\Phiki();
+        $lightTheme = \Phiki\Theme\Theme::GithubLight;
+        $darkTheme = \Phiki\Theme\Theme::GithubDarkHighContrast;
+        $content = (string) $phiki->codeToHtml($code, $grammar, [
+            'light' => $lightTheme,
+            'dark' => $darkTheme,
+        ]);
+        return str($content)
+            ->wrap('<div class="fi-in-code">', '</div>')
+            ->toHtmlString();
+    }
 }
-```
 EOL;
+    }
+
+    protected function treePluginDemoSourceCode(): string
+    {
+        $filename = 'ProductCategory.php';
+        $path = base_path('app/Filament/Widgets/' . $filename);
+        $content = file_get_contents($path);
+        return $content ?: '';
     }
 }
