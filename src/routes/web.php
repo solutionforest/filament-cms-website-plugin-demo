@@ -40,3 +40,9 @@ Route::get('change-locale/{locale}', function ($locale) {
 
     return redirect()->back();
 })->name('locale.switch');
+
+Route::get('/docs/{slug?}', function ($slug = null) {
+    $baseUrl = 'https://solutionforest.github.io/plugins-doc-site/docs';
+    $url = $baseUrl . ($slug ? '/' . ltrim($slug, '/') : '');
+    return redirect()->to($url);
+})->name('docs');
