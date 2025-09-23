@@ -21,11 +21,6 @@ class ProductCategory extends BaseWidget
 
     protected bool $enableTreeTitle = true;
 
-    public static function canView(): bool
-    {
-        return Filament::auth()->user()->can('widget_ProductCategory');
-    }
-
     protected function getFormSchema(): array
     {
         return [
@@ -38,7 +33,7 @@ class ProductCategory extends BaseWidget
         return [
             Action::make('helloworld')
                 ->link()
-                ->successNotificationTitle('Hello World!')->action(fn ($action) => $action->success()),
+                ->alpineClickHandler("alert('Hello World!')"),
             CreateAction::make(),
         ];
     }
