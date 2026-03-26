@@ -8,6 +8,7 @@
 
 @theme {
     --color-primary: #072344;
+    --color-primary-lighter: #456a95;
     --color-secondary: #00aaa1;
     --color-green: #007c85;
     --color-green-lighter: #00b2b4;
@@ -53,22 +54,21 @@
 }
 
 html {
-  @apply font-sans antialiased;
+    @apply font-sans antialiased;
 }
 
 .twitter-card {
-  @apply mt-8 mb-8 rounded bg-yellow-200 px-6 py-8 sm:mt-10 sm:mb-10 md:px-10;
+    @apply mt-8 mb-8 rounded bg-yellow-200 px-6 py-8 sm:mt-10 sm:mb-10 md:px-10;
 
-  & &-title {
-    @apply mt-0 font-sans text-lg font-normal text-blue-dark dark:text-blue-dark sm:text-xl;
-  }
+    & &-title {
+        @apply mt-0 font-sans text-lg font-normal text-blue-dark dark:text-blue-dark sm:text-xl;
+    }
 
-  & &-source {
-    @apply block pt-2 font-sans text-sm font-light text-blue-dark underline;
-  }
+    & &-source {
+        @apply block pt-2 font-sans text-sm font-light text-blue-dark underline;
+    }
 
-  & &-btn {
-    @apply mt-8 mb-0 inline-block border border-blue-dark px-5 py-2 font-sans font-semibold text-blue-dark no-underline transition-colors hover:bg-primary hover:text-white sm:mb-4;
-  }
+    & &-btn {
+        @apply mt-8 mb-0 inline-block border border-blue-dark px-5 py-2 font-sans font-semibold text-blue-dark no-underline transition-colors hover:bg-primary hover:text-white sm:mb-4;
+    }
 }
-
