@@ -2,13 +2,19 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Clusters\SimpleContactFormPlugin\SimpleContactFormPluginCluster;
 use App\Filament\Pages\Auth\Login;
+use App\Filament\Widgets\FilamentCmsInfo;
+use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Resources\Pages\PageRegistration;
+use Filament\Resources\Resource;
+use Filament\Schemas\Components\Callout;
+use Filament\Support\Enums\Width;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -17,6 +23,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use SolutionForest\FilamentCms\FilamentCmsPlugin;
@@ -35,13 +42,15 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(FilamentCmsPlugin::make())
             ->plugin(SimpleLightBoxPlugin::make())
             ->plugin(SimpleContactFormPlugin::make()
-                ->navigationParentItem(SimpleContactFormPluginCluster::class)
+                ->navigationGroup('Plugins')
+                ->navigationLabel('Simple Contact Form')
             )
             ->globalSearch(false)
             ->login(Login::class)
             ->darkMode(true)
-            ->sidebarFullyCollapsibleOnDesktop()
-            ->subNavigationPosition(\Filament\Pages\Enums\SubNavigationPosition::End)
+            ->sidebarCollapsibleOnDesktop(true)
+            ->sidebarWidth('17rem')
+            ->subNavigationPosition(\Filament\Pages\Enums\SubNavigationPosition::Top)
             ->colors([
                 'primary' => [
                     50 => 'oklch(0.9535859816415481 0.03130588051648325 222.04905362663223)',
@@ -82,21 +91,106 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->viteTheme('resources/css/filament/admin/theme.css');
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->maxContentWidth(Width::Full)
+            ->renderHook(
+                PanelsRenderHook::PAGE_START,
+                function () {
+                    $refCallout = (new Callout('The database will reset every hour.'))->warning();
+                    return Blade::render(<<<'BLADE'
+                    <x-filament::callout :heading="$heading" :icon="$icon" :color="$color" style="margin-top: 0.75rem;" />
+                    BLADE, [
+                        'heading' => $refCallout->getHeading(),
+                        'icon' => $refCallout->getIcon(),
+                        'color' => $refCallout->getColor(),
+                    ]);
+                }
+            )
+            ->renderHook(
+                PanelsRenderHook::PAGE_HEADER_ACTIONS_AFTER,
+                function () {
+                    $action = Action::make('preview')
+                        ->color('gray')
+                        ->url(function () {
+                            try {
+                                $id = request()->route('record');
+                                if (empty($id) || !is_numeric($id)) {
+                                    return null;
+                                }
+                                return  route('contact-form.display', ['key' => $id]);
+                            } catch (\Throwable $e) {
+                                //
+                            }
+                            return null;
+                        })
+                        ->visible(fn (Action $action) => !empty($action->getUrl()));
 
-        $this->renderHooks($panel);
+                    return $action->toHtmlString();
+                },
+                [
+                    \SolutionForest\SimpleContactForm\Resources\ContactForms\Pages\ViewContactForms::class,
+                    \SolutionForest\SimpleContactForm\Resources\ContactForms\Pages\EditContactForms::class,
+                ]
+            );
+            
+        $this->registerPluginInfo($panel);
 
         return $panel;
     }
 
-    private function renderHooks(Panel $panel)
+    private function registerPluginInfo(Panel $panel): Panel
     {
-        $panel->renderHook(
-            'panels::page.start',
-            fn () => view('alert', [
-                'message' => 'The database will reset every hour.',
-                'type' => 'warning',
-            ])
-        );
+        collect([
+            \SolutionForest\SimpleContactForm\Resources\ContactForms\ContactFormResource::class => 'simple-contact-form',
+            \App\Filament\Clusters\SimpleLightBoxPlugin\Resources\ProductCategoryResource::class => 'filament-simplelightbox',
+            \App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages\ListProductCategories::class => 'filament-tree',
+            \App\Filament\Clusters\TabPlugin\Resources\ProductCategories\ProductCategoryResource::class => 'tab-layout-plugin',
+        ])->each(function ($pluginSlug, $resourceOrPage) use ($panel) {
+            try {
+                $page = null;
+                
+                if (is_subclass_of($resourceOrPage, Resource::class)) {
+                    $page = collect($resourceOrPage::getPages())
+                        ->map(fn ($pageClass) => $pageClass instanceof PageRegistration ? $pageClass->getPage() : $pageClass)
+                        ->where(fn ($class) => is_string($class) && !empty($class))
+                        ->values()
+                        ->all();
+
+                    } elseif (is_subclass_of($resourceOrPage, \Filament\Resources\Pages\Page::class)) {
+                    $page = $resourceOrPage;
+                }
+
+                $ref = new FilamentCmsInfo();
+                $ref->limit = [$pluginSlug];
+                $info = $ref->getPluginInfos()[0] ?? null;
+
+                if ($page && $info) {
+                    $panel
+                        ->renderHook(
+                            PanelsRenderHook::PAGE_START,
+                            fn () => Blade::render(<<<'BLADE'
+                            <x-filament::section style="margin-top: 0.75rem;">
+                                <a href="{{ $pluginUrl }}" target="_blank" class="mt-2">
+                                    <span class="text-sm mr-2">
+                                        {{ $name }}
+                                    </span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                                        {{ $version }}
+                                    </span>
+                                </a>
+                            </x-filament::section>
+                            BLADE, [
+                                'pluginUrl' => data_get($info, 'url'),
+                                'name' => data_get($info, 'name'),
+                                'version' => data_get($info, 'version'),
+                            ]),
+                            $page,
+                        );
+                }
+            } catch (\Throwable $th) {
+                // do nothing
+            }
+        });
+        return $panel;
     }
 }

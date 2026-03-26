@@ -40,11 +40,13 @@ class ProductCategoryResource extends \App\Filament\Resources\ProductCategories\
                     ->schema([
                         TextEntry::make('pdf')
                             ->label('PDF (defaultDisplayUrl as false and default value as "No PDF")')
-                            ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: false)
-                            ->default(fn ($record) => $record->id % 2 == 0 ? 'View PDF' : 'No PDF'),
+                            ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : null, defaultDisplayUrl: false)
+                            ->default(fn ($record) => $record->id % 2 == 0 ? 'View PDF' : null)
+                            ->placeholder('No PDF'),
                         TextEntry::make('pdf_2')
                             ->label('PDF (defaultDisplayUrl as true) demo')
-                            ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: true),
+                            ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : null, defaultDisplayUrl: true)
+                            ->placeholder('N/A'),
                     ]),
                 ImageEntry::make('image')
                     ->simpleLightbox(fn ($record) => $record->id % 2 == 0  ? 'https://dummyimage.com/400x400/4144e0/fcfcfc' : 'https://dummyimage.com/400x400/000/fff.png', defaultDisplayUrl: true),
@@ -63,12 +65,14 @@ class ProductCategoryResource extends \App\Filament\Resources\ProductCategories\
                     TextColumn::make('pdf')
                         ->alignCenter()
                         ->label('PDF (defaultDisplayUrl as false and default value as "No PDF")')
-                        ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: false)
-                        ->default(fn ($record) => $record->id % 2 == 0 ? 'View PDF' : 'No PDF'),
+                        ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : null, defaultDisplayUrl: false)
+                        ->default(fn ($record) => $record->id % 2 == 0 ? 'View PDF' : null)
+                        ->placeholder('No PDF'),
                     TextColumn::make('pdf_2')
                         ->alignCenter()
                         ->label('PDF (defaultDisplayUrl as true) demo')
-                        ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : 'N/A', defaultDisplayUrl: true),
+                        ->simpleLightbox(fn ($record) => $record->id % 2 == 0 ? 'https://tourism.gov.in/sites/default/files/2019-04/dummy-pdf_2.pdf' : null, defaultDisplayUrl: true)
+                        ->placeholder('N/A'),
                 ])->alignCenter(),
                 ImageColumn::make('image')
                     ->simpleLightbox(fn ($record) => $record->id % 2 == 0  ? 'https://dummyimage.com/400x400/4144e0/fcfcfc' : 'https://dummyimage.com/400x400/000/fff.png', defaultDisplayUrl: true),

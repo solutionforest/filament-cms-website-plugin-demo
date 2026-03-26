@@ -7,7 +7,7 @@ use App\Filament\Clusters\TabPlugin\Resources\ProductCategories\Pages\EditProduc
 use App\Filament\Clusters\TabPlugin\Resources\ProductCategories\Pages\ListProductCategories;
 use App\Filament\Clusters\TabPlugin\TabPluginCluster;
 
-class ProductCategoryResource extends \APp\Filament\Resources\ProductCategories\ProductCategoryResource
+class ProductCategoryResource extends \App\Filament\Resources\ProductCategories\ProductCategoryResource
 {
     protected static ?string $cluster = TabPluginCluster::class;
     protected static bool $shouldRegisterNavigation = true;

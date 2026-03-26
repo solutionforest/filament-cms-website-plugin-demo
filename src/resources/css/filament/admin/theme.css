@@ -1,7 +1,10 @@
-@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import "../../../../vendor/filament/filament/resources/css/theme.css";
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
-@source '../../../../resources/views/alert.blade.php';
 
 @source '../../../../vendor/solution-forest/simple-contact-form/resources/views/**/*.blade.php';
+
+.fi-page-sub-navigation-sidebar-ctn {
+    @apply md:w-55;
+}
