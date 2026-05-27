@@ -3,7 +3,7 @@
 namespace App\Filament\Clusters\TreePlugin\Resources\ProductCategoryResource\Pages;
 
 use App\Filament\Clusters\TreePlugin\ProductCategoryResource;
-use App\Filament\Widgets\ProductCategory;
+use App\Filament\Widgets\ProductCategoryTree;
 use Filament\Actions\CreateAction;
 
 class ListProductCategories extends \App\Filament\Resources\ProductCategories\Pages\ListProductCategories
@@ -20,7 +20,7 @@ class ListProductCategories extends \App\Filament\Resources\ProductCategories\Pa
     protected function getHeaderWidgets(): array
     {
         return [
-            ProductCategory::class
+            ProductCategoryTree::class
         ];
     }
 }

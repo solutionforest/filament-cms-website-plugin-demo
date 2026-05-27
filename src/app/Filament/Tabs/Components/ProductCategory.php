@@ -2,7 +2,7 @@
 
 namespace App\Filament\Tabs\Components;
 
-use App\Filament\Widgets\ProductCategory as ComponentTabComponent;
+use App\Filament\Widgets\ProductCategoryTree as ComponentTabComponent;
 use SolutionForest\TabLayoutPlugin\Components\Tabs\TabLayoutComponent;
 
 class ProductCategory extends TabLayoutComponent

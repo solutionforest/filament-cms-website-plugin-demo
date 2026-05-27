@@ -17,6 +17,8 @@ class FilamentCmsInfo extends Widget
 
     public static string $docLink = 'https://solutionforest.github.io/plugins-doc-site';
 
+    protected static ?int $sort = 1;
+
     public function getPluginInfos(): array
     {
         $data = array_map(fn ($arr) => array_merge($arr, ['version' => $this->getPluginInstallVersion($arr['packageName'])]), [

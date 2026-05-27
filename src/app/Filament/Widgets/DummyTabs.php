@@ -8,7 +8,7 @@ use SolutionForest\TabLayoutPlugin\Widgets\TabsWidget as BaseWidget;
 
 class DummyTabs extends BaseWidget
 {
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 4;
     protected function schema(): array
     {
         return [
@@ -41,6 +41,12 @@ class DummyTabs extends BaseWidget
                 ->schema([
                     // Display html
                     static::codeToHtml($this->treePluginDemoSourceCode(), 'php'),
+                ]),
+
+            TabLayoutTab::make('Source Code (Nestable Tree Plugin)')
+                ->schema([
+                    // Display html
+                    static::codeToHtml($this->nestableTreePluginDemoSourceCode(), 'php'),
                 ]),
 
             // Hyper link
@@ -135,7 +141,15 @@ EOL;
 
     protected function treePluginDemoSourceCode(): string
     {
-        $filename = 'ProductCategory.php';
+        $filename = 'ProductCategoryTree.php';
+        $path = base_path('app/Filament/Widgets/' . $filename);
+        $content = file_get_contents($path);
+        return $content ?: '';
+    }
+
+    protected function nestableTreePluginDemoSourceCode(): string
+    {
+        $filename = 'ProductCategoryNestableTree.php';
         $path = base_path('app/Filament/Widgets/' . $filename);
         $content = file_get_contents($path);
         return $content ?: '';

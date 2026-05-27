@@ -11,13 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 use SolutionForest\FilamentTree\Actions\CreateAction;
 use SolutionForest\FilamentTree\Widgets\Tree as BaseWidget;
 
-class ProductCategory extends BaseWidget
+class ProductCategoryTree extends BaseWidget
 {
     protected static string $model = ModelsProductCategory::class;
 
+    protected static ?int $sort = 2;
+
     protected static int $maxDepth = 2;
 
-    protected ?string $treeTitle = 'Product Category';
+    protected ?string $treeTitle = 'Product Category (Tree)';
 
     protected bool $enableTreeTitle = true;
 
