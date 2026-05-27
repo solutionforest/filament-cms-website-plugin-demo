@@ -31,6 +31,11 @@ class FilamentCmsInfo extends Widget
                 'url' => static::getFilamentPluginUrl('solution-forest-tree'),
             ],
             [
+                'name' => 'Nestable Tree',
+                'packageName' => 'solution-forest/filament-nestable-tree',
+                'url' => static::getFilamentPluginUrl('solution-forest-filament-nestable-tree'),
+            ],
+            [
                 'name' => 'Simple Lightbox',
                 'packageName' => 'solution-forest/filament-simplelightbox',
                 'url' => static::getFilamentPluginUrl('solution-forest-simplelightbox'),

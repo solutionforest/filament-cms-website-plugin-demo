@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         if ($demoUser) {
             $demoUser->assignRole($demoUserRoles);
         }
+        $this->call(NestableTreeSeeder::class);
     }
 
     private function createDemoUserRoles(): array

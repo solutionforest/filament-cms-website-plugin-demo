@@ -10,6 +10,6 @@ class TabPluginCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquares2x2;
     protected static string | \UnitEnum | null $navigationGroup = 'Plugins';
-    protected static ?int $navigationSort = 11;
+    protected static ?int $navigationSort = 12;
     protected static ?string $navigationLabel = 'Tab';
 }

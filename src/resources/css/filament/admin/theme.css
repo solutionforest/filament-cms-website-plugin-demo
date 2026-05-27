@@ -8,3 +8,7 @@
 .fi-page-sub-navigation-sidebar-ctn {
     @apply md:w-55;
 }
+
+.fi-page-main .fi-tabs {
+    @apply max-w-[68svw];
+}
