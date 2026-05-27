@@ -24,7 +24,7 @@ class StaticRecordsPage extends TreePage
 
     public static function jsonPath(): string
     {
-        return storage_path('app/demo/navigation.json');
+        return resource_path('demo/navigation.json');
     }
 
     public static function readNodes(): array
